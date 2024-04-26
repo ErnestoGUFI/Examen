@@ -35,7 +35,7 @@ public class Ventana extends JFrame {
 	private JTextField textFieldCP;
 	private JTextField textFieldMatricula;
 	private JTextField textFieldNacimiento;
-	private JComboBox comboBoxNacionalidad , comboBoxGeneros,comboBoxDias,comboBoxMes,comboBoxAnio;
+	private JComboBox comboBoxNacionalidad , comboBoxGeneros,comboBoxDias,comboBox_1,comboBoxMes,comboBoxAnio,comboBoxEscolaridad,comboBoxStatus;
 
 	/**
 	 * Launch the application.
@@ -69,7 +69,7 @@ public class Ventana extends JFrame {
 	}
 	
 	public void probarComponentes() {
-		this.inicio();
+		this.descargarDoce();
 	}
 	
 	public void inicio() {
@@ -940,21 +940,400 @@ public class Ventana extends JFrame {
 	public void descargarDoce() {
 		menuDocentes();
 	    JPanel descargarDoce = new JPanel();
-	    descargarDoce.setBackground(Color.ORANGE);
+	    descargarDoce.setBackground(new Color(255, 255, 255));
 	    getContentPane().add(descargarDoce);
+	    descargarDoce.setLayout(null);
 	    
-	    JLabel lblNewLabel = new JLabel("Descargar información de docentes");
-	    descargarDoce.add(lblNewLabel);
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBounds(10, 10, 1046, 117);
+	    descargarDoce.add(panel_1);
+	    panel_1.setLayout(null);
+	    
+	    JLabel lblNewLabel_2 = new JLabel("Descargar informacion");
+	    lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	    lblNewLabel_2.setBounds(249, 34, 419, 42);
+	    panel_1.add(lblNewLabel_2);
+	    
+	    JPanel panel = new JPanel();
+	    panel.setBounds(25, 20, 94, 76);
+	    panel_1.add(panel);
+	    
+	    JPanel panel_2 = new JPanel();
+	    panel_2.setBounds(42, 148, 980, 472);
+	    descargarDoce.add(panel_2);
+	    panel_2.setLayout(null);
+	    
+	    JPanel panel_3 = new JPanel();
+	    panel_3.setBackground(new Color(255, 255, 255));
+	    panel_3.setBounds(27, 29, 203, 165);
+	    panel_2.add(panel_3);
+	    
+	    JPanel panel_4 = new JPanel();
+	    panel_4.setBackground(new Color(204, 255, 255));
+	    panel_4.setBounds(288, 29, 640, 26);
+	    panel_2.add(panel_4);
+	    
+	    JPanel panel_5 = new JPanel();
+	    panel_5.setBackground(new Color(153, 102, 204));
+	    panel_5.setBounds(41, 255, 430, 26);
+	    panel_2.add(panel_5);
+	    
+	    JPanel panel_5_1 = new JPanel();
+	    panel_5_1.setBackground(new Color(153, 102, 204));
+	    panel_5_1.setBounds(511, 255, 430, 26);
+	    panel_2.add(panel_5_1);
+	    
+	    JLabel lblNombre = new JLabel("Nombre:");
+	    lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNombre.setBounds(288, 65, 75, 28);
+	    panel_2.add(lblNombre);
+	    
+	    JLabel lblNombre_1 = new JLabel("\"         \"");
+	    lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNombre_1.setBounds(379, 65, 124, 28);
+	    panel_2.add(lblNombre_1);
+	    
+	    JLabel lblApellidos = new JLabel("Apellidos:");
+	    lblApellidos.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidos.setBounds(288, 103, 75, 28);
+	    panel_2.add(lblApellidos);
+	    
+	    JLabel lblApellidos1 = new JLabel("\"         \"");
+	    lblApellidos1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidos1.setBounds(379, 103, 124, 28);
+	    panel_2.add(lblApellidos1);
+	    
+	    JLabel lblEdad = new JLabel("Edad:");
+	    lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblEdad.setBounds(288, 141, 75, 28);
+	    panel_2.add(lblEdad);
+	    
+	    JLabel lblApellidos1_1 = new JLabel("\"         \"");
+	    lblApellidos1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidos1_1.setBounds(379, 141, 87, 28);
+	    panel_2.add(lblApellidos1_1);
+	    
+	    JLabel lblSexo = new JLabel("Sexo:");
+	    lblSexo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblSexo.setBounds(524, 141, 63, 28);
+	    panel_2.add(lblSexo);
+	    
+	    JLabel lblSexo1 = new JLabel("\"         \"");
+	    lblSexo1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblSexo1.setBounds(608, 141, 75, 28);
+	    panel_2.add(lblSexo1);
+	    
+	    JLabel lblCurp_2 = new JLabel("C.U.R.P:");
+	    lblCurp_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCurp_2.setBounds(734, 141, 63, 28);
+	    panel_2.add(lblCurp_2);
+	    
+	    JLabel lblSexo1_1 = new JLabel("\"         \"");
+	    lblSexo1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblSexo1_1.setBounds(853, 141, 75, 28);
+	    panel_2.add(lblSexo1_1);
+	    
+	    JLabel lblLugarDeNacimiento_1 = new JLabel("Lugar de nacimiento:");
+	    lblLugarDeNacimiento_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblLugarDeNacimiento_1.setBounds(288, 179, 163, 28);
+	    panel_2.add(lblLugarDeNacimiento_1);
+	    
+	    JLabel lblNacimiento = new JLabel("\"         \"");
+	    lblNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNacimiento.setBounds(472, 179, 87, 28);
+	    panel_2.add(lblNacimiento);
+	    
+	    JLabel lblNacionalidad = new JLabel("Nacionalidad:");
+	    lblNacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNacionalidad.setBounds(608, 179, 97, 28);
+	    panel_2.add(lblNacionalidad);
+	    
+	    JLabel lblNacimiento_1 = new JLabel("\"         \"");
+	    lblNacimiento_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNacimiento_1.setBounds(730, 179, 87, 28);
+	    panel_2.add(lblNacimiento_1);
+	    
+	    JLabel lblCorreo = new JLabel("Correo electrónico:");
+	    lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCorreo.setBounds(41, 303, 151, 28);
+	    panel_2.add(lblCorreo);
+	    
+	    JLabel lblNombre_1_1 = new JLabel("\"         \"");
+	    lblNombre_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNombre_1_1.setBounds(242, 303, 124, 28);
+	    panel_2.add(lblNombre_1_1);
+	    
+	    JLabel lblTelfono = new JLabel("Teléfono:");
+	    lblTelfono.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblTelfono.setBounds(41, 341, 151, 28);
+	    panel_2.add(lblTelfono);
+	    
+	    JLabel lblTelefono_1 = new JLabel("\"         \"");
+	    lblTelefono_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblTelefono_1.setBounds(242, 341, 124, 28);
+	    panel_2.add(lblTelefono_1);
+	    
+	    JLabel lblDomicilio = new JLabel("Domicilio:");
+	    lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblDomicilio.setBounds(41, 379, 151, 28);
+	    panel_2.add(lblDomicilio);
+	    
+	    JLabel lblDomicilio_1 = new JLabel("\"         \"");
+	    lblDomicilio_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblDomicilio_1.setBounds(242, 379, 124, 28);
+	    panel_2.add(lblDomicilio_1);
+	    
+	    JLabel lblCdigoPostal = new JLabel("Código postal:");
+	    lblCdigoPostal.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCdigoPostal.setBounds(41, 417, 151, 28);
+	    panel_2.add(lblCdigoPostal);
+	    
+	    JLabel lblCodigoPostal_1 = new JLabel("\"         \"");
+	    lblCodigoPostal_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCodigoPostal_1.setBounds(242, 417, 124, 28);
+	    panel_2.add(lblCodigoPostal_1);
+	    
+	    JLabel lblNivelEducativo = new JLabel("Nivel Educativo:");
+	    lblNivelEducativo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNivelEducativo.setBounds(511, 303, 151, 28);
+	    panel_2.add(lblNivelEducativo);
+	    
+	    JLabel lblNvlEducativo = new JLabel("\"         \"");
+	    lblNvlEducativo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNvlEducativo.setBounds(689, 303, 87, 28);
+	    panel_2.add(lblNvlEducativo);
+	    
+	    JLabel lblStatusActual = new JLabel("Status actual:");
+	    lblStatusActual.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblStatusActual.setBounds(511, 341, 151, 28);
+	    panel_2.add(lblStatusActual);
+	    
+	    JLabel lblMatrcula = new JLabel("Matrícula:");
+	    lblMatrcula.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblMatrcula.setBounds(511, 379, 151, 28);
+	    panel_2.add(lblMatrcula);
+	    
+	    JLabel lblStatus = new JLabel("\"         \"");
+	    lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblStatus.setBounds(689, 341, 87, 28);
+	    panel_2.add(lblStatus);
+	    
+	    JLabel lblMatricula_1 = new JLabel("\"         \"");
+	    lblMatricula_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblMatricula_1.setBounds(689, 379, 87, 28);
+	    panel_2.add(lblMatricula_1);
 	}
-
+	//Tengo que poner valores predeterminados
 	public void consultarDoce() {
-		menuDocentes();
+	    menuDocentes();
 	    JPanel consultarDoce = new JPanel();
-	    consultarDoce.setBackground(Color.PINK);
+	    consultarDoce.setBackground(new Color(255, 255, 255));
 	    getContentPane().add(consultarDoce);
+	    consultarDoce.setLayout(null);
+	    
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBounds(10, 10, 1046, 117);
+	    consultarDoce.add(panel_1);
+	    panel_1.setLayout(null);
 	    
 	    JLabel lblNewLabel = new JLabel("Consultar información de docentes");
-	    consultarDoce.add(lblNewLabel);
+	    lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	    lblNewLabel.setBounds(326, 21, 460, 61);
+	    panel_1.add(lblNewLabel);
+	    
+	    JPanel panelLogoEscuela = new JPanel();
+	    panelLogoEscuela.setBounds(51, 21, 123, 86);
+	    panel_1.add(panelLogoEscuela);
+	    
+	    JPanel panelFoto = new JPanel();
+	    panelFoto.setBounds(59, 182, 183, 178);
+	    consultarDoce.add(panelFoto);
+	    
+	    JLabel lblNombre = new JLabel("Nombre:");
+	    lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNombre.setBounds(292, 182, 124, 28);
+	    consultarDoce.add(lblNombre);
+	    
+	    JLabel lblNombre_1 = new JLabel("\"         \"");
+	    lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNombre_1.setBounds(446, 182, 124, 28);
+	    consultarDoce.add(lblNombre_1);
+	    
+	    JLabel lblApellidoP = new JLabel("Apellido paterno:");
+	    lblApellidoP.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoP.setBounds(292, 220, 124, 28);
+	    consultarDoce.add(lblApellidoP);
+	    
+	    JLabel lblApellidoP_1 = new JLabel("\"         \"");
+	    lblApellidoP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoP_1.setBounds(446, 220, 124, 28);
+	    consultarDoce.add(lblApellidoP_1);
+	    
+	    JPanel panelInfoGeneral = new JPanel();
+	    panelInfoGeneral.setBounds(59, 433, 511, 179);
+	    consultarDoce.add(panelInfoGeneral);
+	    panelInfoGeneral.setLayout(null);
+	    
+	    JLabel lblGnero = new JLabel("Género:");
+	    lblGnero.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblGnero.setBounds(40, 20, 124, 28);
+	    panelInfoGeneral.add(lblGnero);
+	    
+	    JLabel lblLugarDeNacimiento = new JLabel("Lugar de Nacimiento: ");
+	    lblLugarDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblLugarDeNacimiento.setBounds(40, 60, 161, 28);
+	    panelInfoGeneral.add(lblLugarDeNacimiento);
+	    
+	    JLabel lblNmeroTelefonico = new JLabel("Número telefonico:");
+	    lblNmeroTelefonico.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNmeroTelefonico.setBounds(40, 140, 161, 28);
+	    panelInfoGeneral.add(lblNmeroTelefonico);
+	    
+	    JLabel lblNacionalidad_1 = new JLabel("Nacionalidad:");
+	    lblNacionalidad_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNacionalidad_1.setBounds(40, 100, 161, 28);
+	    panelInfoGeneral.add(lblNacionalidad_1);
+	    
+	    JLabel lblGenero = new JLabel("\"         \"");
+	    lblGenero.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblGenero.setBounds(233, 20, 124, 28);
+	    panelInfoGeneral.add(lblGenero);
+	    
+	    JLabel lblLugarNacimiento = new JLabel("\"         \"");
+	    lblLugarNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblLugarNacimiento.setBounds(233, 60, 124, 28);
+	    panelInfoGeneral.add(lblLugarNacimiento);
+	    
+	    JLabel lblNacionalidad = new JLabel("\"         \"");
+	    lblNacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNacionalidad.setBounds(233, 100, 124, 28);
+	    panelInfoGeneral.add(lblNacionalidad);
+	    
+	    JLabel lblTelefono = new JLabel("\"         \"");
+	    lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblTelefono.setBounds(233, 140, 124, 28);
+	    panelInfoGeneral.add(lblTelefono);
+	    
+	    JPanel PanelXD = new JPanel();
+	    PanelXD.setBounds(625, 215, 379, 397);
+	    consultarDoce.add(PanelXD);
+	    PanelXD.setLayout(null);
+	    
+	    JLabel lblDatosDeUbicacin = new JLabel("Datos de Ubicación");
+	    lblDatosDeUbicacin.setFont(new Font("Tahoma", Font.BOLD, 16));
+	    lblDatosDeUbicacin.setBounds(28, 23, 262, 28);
+	    PanelXD.add(lblDatosDeUbicacin);
+	    
+	    JLabel lblDomicilio_1 = new JLabel("Domicilio");
+	    lblDomicilio_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblDomicilio_1.setBounds(38, 61, 124, 28);
+	    PanelXD.add(lblDomicilio_1);
+	    
+	    JLabel lblCalles = new JLabel("Entre Calles");
+	    lblCalles.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCalles.setBounds(38, 100, 124, 28);
+	    PanelXD.add(lblCalles);
+	    
+	    JLabel lblCdigoPostal = new JLabel("Código Postal");
+	    lblCdigoPostal.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCdigoPostal.setBounds(38, 140, 124, 28);
+	    PanelXD.add(lblCdigoPostal);
+	    
+	    JLabel lblDatosDeEscolaridad = new JLabel("Datos de escolaridad");
+	    lblDatosDeEscolaridad.setFont(new Font("Tahoma", Font.BOLD, 16));
+	    lblDatosDeEscolaridad.setBounds(28, 192, 262, 28);
+	    PanelXD.add(lblDatosDeEscolaridad);
+	    
+	    JLabel lblNivelEducativo_1 = new JLabel("Nivel Educativo");
+	    lblNivelEducativo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNivelEducativo_1.setBounds(38, 230, 124, 28);
+	    PanelXD.add(lblNivelEducativo_1);
+	    
+	    JLabel lblStatus = new JLabel("Estatus Actual");
+	    lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblStatus.setBounds(38, 270, 124, 28);
+	    PanelXD.add(lblStatus);
+	    
+	    JLabel lblMatricula_1 = new JLabel("Matricula");
+	    lblMatricula_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblMatricula_1.setBounds(38, 309, 124, 28);
+	    PanelXD.add(lblMatricula_1);
+	    
+	    JLabel lblDomicilio = new JLabel("\"         \"");
+	    lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblDomicilio.setBounds(179, 61, 124, 28);
+	    PanelXD.add(lblDomicilio);
+	    
+	    JLabel lblCalles_1 = new JLabel("\"         \"");
+	    lblCalles_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCalles_1.setBounds(179, 100, 124, 28);
+	    PanelXD.add(lblCalles_1);
+	    
+	    JLabel lblCP_1 = new JLabel("\"         \"");
+	    lblCP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCP_1.setBounds(179, 140, 124, 28);
+	    PanelXD.add(lblCP_1);
+	    
+	    JLabel lblNivelEducativo = new JLabel("\"         \"");
+	    lblNivelEducativo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNivelEducativo.setBounds(172, 230, 124, 28);
+	    PanelXD.add(lblNivelEducativo);
+	    
+	    JLabel lblStatusActual = new JLabel("\"         \"");
+	    lblStatusActual.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblStatusActual.setBounds(172, 270, 124, 28);
+	    PanelXD.add(lblStatusActual);
+	    
+	    JLabel lblMatricula = new JLabel("\"         \"");
+	    lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblMatricula.setBounds(172, 309, 124, 28);
+	    PanelXD.add(lblMatricula);
+	    
+	    JLabel lblApellidoM = new JLabel("Apellido materno:");
+	    lblApellidoM.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoM.setBounds(292, 258, 124, 28);
+	    consultarDoce.add(lblApellidoM);
+	    
+	    JLabel lblApellidoM_1 = new JLabel("\"         \"");
+	    lblApellidoM_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoM_1.setBounds(446, 258, 124, 28);
+	    consultarDoce.add(lblApellidoM_1);
+	    
+	    JLabel lblCorreo = new JLabel("Correo electronico:");
+	    lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCorreo.setBounds(292, 296, 144, 28);
+	    consultarDoce.add(lblCorreo);
+	    
+	    JLabel lblCorreo_1 = new JLabel("\"         \"");
+	    lblCorreo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCorreo_1.setBounds(446, 296, 124, 28);
+	    consultarDoce.add(lblCorreo_1);
+	    
+	    JLabel lblInfoGeneral = new JLabel("Información General");
+	    lblInfoGeneral.setFont(new Font("Tahoma", Font.PLAIN, 18));
+	    lblInfoGeneral.setBounds(59, 398, 262, 28);
+	    consultarDoce.add(lblInfoGeneral);
+	    
+	    JLabel lblDatosAdicionales = new JLabel("Adicionales");
+	    lblDatosAdicionales.setFont(new Font("Tahoma", Font.PLAIN, 18));
+	    lblDatosAdicionales.setBounds(625, 182, 262, 28);
+	    consultarDoce.add(lblDatosAdicionales);
+	    
+	    JButton btnTerminar = new JButton("Finalizar");
+	    btnTerminar.setBounds(785, 642, 219, 35);
+	    consultarDoce.add(btnTerminar);
+	    
+	    JLabel lblCurp = new JLabel("C.U.R.P");
+	    lblCurp.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCurp.setBounds(292, 334, 144, 28);
+	    consultarDoce.add(lblCurp);
+	    
+	    JLabel lblCurp_1 = new JLabel("\"         \"");
+	    lblCurp_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCurp_1.setBounds(446, 334, 124, 28);
+	    consultarDoce.add(lblCurp_1);
 	}
 
 	public void crearDoce() {
@@ -1050,7 +1429,7 @@ public class Ventana extends JFrame {
 	    
 	    String genero [] = {"Masculino", "Femenino", "Otro"};
 	    
-	    JComboBox comboBoxGeneros = new JComboBox(genero);
+	    comboBoxGeneros = new JComboBox(genero);
 	    comboBoxGeneros.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    comboBoxGeneros.setBounds(243, 269, 103, 21);
 	    crearDoce.add(comboBoxGeneros);
@@ -1068,13 +1447,13 @@ public class Ventana extends JFrame {
 	    
 	    String dias[] = {"DD","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 	    
-	    JComboBox comboBoxDias = new JComboBox(dias);
+	    comboBoxDias = new JComboBox(dias);
 	    comboBoxDias.setBounds(484, 269, 46, 21);
 	    crearDoce.add(comboBoxDias);
 	    
 	    String meses[] = {"MM","Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"};
 	    
-	    JComboBox comboBoxMes = new JComboBox(meses);
+	    comboBoxMes = new JComboBox(meses);
 	    comboBoxMes.setBounds(540, 269, 46, 21);
 	    crearDoce.add(comboBoxMes);
 	    
@@ -1085,7 +1464,7 @@ public class Ventana extends JFrame {
 	    		"2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013",
 	    		"2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024"};
 	    
-	    JComboBox comboBoxAnio = new JComboBox(año);
+	    comboBoxAnio = new JComboBox(año);
 	    comboBoxAnio.setBounds(596, 269, 46, 21);
 	    crearDoce.add(comboBoxAnio);
 	    
@@ -1094,8 +1473,8 @@ public class Ventana extends JFrame {
 	    lblNacionalidad.setBounds(63, 329, 139, 19);
 	    crearDoce.add(lblNacionalidad);
 	    
-	    String nacionalidad[] = {};	    
-	    JComboBox comboBoxNacionalidad = new JComboBox();
+	    String nacionalidad[] = {"Mexicana","Peruana","Venezolana","Colombiana"};	     
+	    comboBoxNacionalidad = new JComboBox(nacionalidad);
 	    comboBoxNacionalidad.setBounds(243, 327, 399, 21);
 	    crearDoce.add(comboBoxNacionalidad);
 	    
@@ -1156,7 +1535,7 @@ public class Ventana extends JFrame {
 	    
 	    String telefono[] = {"Particular","Teléfono Celular"};
 	    
-	    JComboBox comboBox_1 = new JComboBox(telefono);
+	    comboBox_1 = new JComboBox(telefono);
 	    comboBox_1.setBounds(243, 418, 144, 21);
 	    crearDoce.add(comboBox_1);
 	    
@@ -1192,7 +1571,7 @@ public class Ventana extends JFrame {
 	    
 	    String escolaridad[] = {"Licenciatura","Ingenieria","Maestria","Doctorado"};
 	    
-	    JComboBox comboBoxEscolaridad = new JComboBox(escolaridad);
+	    comboBoxEscolaridad = new JComboBox(escolaridad);
 	    comboBoxEscolaridad.setBounds(243, 628, 144, 21);
 	    crearDoce.add(comboBoxEscolaridad);
 	    
@@ -1213,7 +1592,7 @@ public class Ventana extends JFrame {
 	    
 	    String status[] = {"Activo","Innactivo"};
 	    
-	    JComboBox comboBoxStatus = new JComboBox(status);
+	    comboBoxStatus = new JComboBox(status);
 	    comboBoxStatus.setBounds(496, 628, 146, 21);
 	    crearDoce.add(comboBoxStatus);
 	    
@@ -1221,18 +1600,279 @@ public class Ventana extends JFrame {
 	    btnCrearDocente.setBounds(882, 628, 124, 51);
 	    crearDoce.add(btnCrearDocente);
 	    
+	    btnCrearDocente.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String nombre = textFieldNombre.getText();
+        		String apellidoP =textFieldApPaterno.getText();
+        		String apellidoM = textFieldApMaterno.getText();      	
+		    	
+		    	if(nombre.length()>0) {
+		    		textFieldNombre.setBorder(new LineBorder(Color.gray,1,true));
+		    	}
+		    	else {
+		    		textFieldNombre.setBorder(new LineBorder(Color.red,2,true));
+		    	}
+		    	if(apellidoP.length()>0) {
+		    		textFieldApPaterno.setBorder(new LineBorder(Color.gray,1,true));
+		    	}
+		    	else {
+		    		textFieldApPaterno.setBorder(new LineBorder(Color.red,2,true));
+		    	}
+		    	if(apellidoM.length()>0) {
+		    		textFieldApMaterno.setBorder(new LineBorder(Color.gray,1,true));
+		    	}
+		    	else {
+		    		textFieldApMaterno.setBorder(new LineBorder(Color.red,2,true));
+		    	}
+		    	
+		    	if(nombre.length()>0 && apellidoP.length()>0 && apellidoM.length()>0)
+		    	{
+		    		getContentPane().removeAll();
+			        docenteCreado();
+			        getContentPane().revalidate();
+			        getContentPane().repaint();
+		    	}
+		    
+			}
+	    	
+	    });
+	    
 	    JButton btnRegresar = new JButton("Regresar");
 	    btnRegresar.setBounds(732, 629, 124, 51);
 	    crearDoce.add(btnRegresar);
+	    
+	    btnRegresar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				getContentPane().removeAll();
+		        panelDocentes();
+		        getContentPane().revalidate();
+		        getContentPane().repaint();
+			}
+	    	
+	    });
 	    
 	    textFieldNacimiento = new JTextField();
 	    textFieldNacimiento.setColumns(10);
 	    textFieldNacimiento.setBounds(243, 300, 399, 19);
 	    crearDoce.add(textFieldNacimiento);
-	    
 	  
 	}
-
+	public void docenteCreado() {
+		menuDocentes();
+	    JPanel docenteCreado = new JPanel();
+	    docenteCreado.setBackground(new Color(255, 255, 255));
+	    getContentPane().add(docenteCreado);
+	    docenteCreado.setLayout(null);
+	    
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBounds(10, 10, 1046, 117);
+	    docenteCreado.add(panel_1);
+	    panel_1.setLayout(null);
+	    
+	    JLabel lblNewLabel = new JLabel("Consultar información de docentes");
+	    lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	    lblNewLabel.setBounds(326, 21, 460, 61);
+	    panel_1.add(lblNewLabel);
+	    
+	    JPanel panelLogoEscuela = new JPanel();
+	    panelLogoEscuela.setBounds(51, 21, 123, 86);
+	    panel_1.add(panelLogoEscuela);
+	    
+	    JPanel panelFoto = new JPanel();
+	    panelFoto.setBounds(59, 182, 183, 178);
+	    docenteCreado.add(panelFoto);
+	    
+	    JLabel lblNombre = new JLabel("Nombre:");
+	    lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNombre.setBounds(292, 182, 124, 28);
+	    docenteCreado.add(lblNombre);
+	    
+	    JLabel lblNombre_1 = new JLabel(textFieldNombre.getText());
+	    lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNombre_1.setBounds(446, 182, 124, 28);
+	    docenteCreado.add(lblNombre_1);
+	    
+	    JLabel lblApellidoP = new JLabel("Apellido paterno:");
+	    lblApellidoP.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoP.setBounds(292, 220, 124, 28);
+	    docenteCreado.add(lblApellidoP);
+	    
+	    JLabel lblApellidoP_1 = new JLabel(textFieldApPaterno.getText());
+	    lblApellidoP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoP_1.setBounds(446, 220, 124, 28);
+	    docenteCreado.add(lblApellidoP_1);
+	    
+	    JPanel panelInfoGeneral = new JPanel();
+	    panelInfoGeneral.setBounds(59, 433, 511, 179);
+	    docenteCreado.add(panelInfoGeneral);
+	    panelInfoGeneral.setLayout(null);
+	    
+	    JLabel lblGnero = new JLabel("Género:");
+	    lblGnero.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblGnero.setBounds(40, 20, 124, 28);
+	    panelInfoGeneral.add(lblGnero);
+	    
+	    JLabel lblLugarDeNacimiento = new JLabel("Lugar de Nacimiento: ");
+	    lblLugarDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblLugarDeNacimiento.setBounds(40, 60, 161, 28);
+	    panelInfoGeneral.add(lblLugarDeNacimiento);
+	    
+	    JLabel lblNmeroTelefonico = new JLabel("Número telefonico:");
+	    lblNmeroTelefonico.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNmeroTelefonico.setBounds(40, 140, 161, 28);
+	    panelInfoGeneral.add(lblNmeroTelefonico);
+	    
+	    JLabel lblNacionalidad_1 = new JLabel("Nacionalidad:");
+	    lblNacionalidad_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNacionalidad_1.setBounds(40, 100, 161, 28);
+	    panelInfoGeneral.add(lblNacionalidad_1);
+	    
+	    JLabel lblGenero_1 = new JLabel((String) comboBoxGeneros.getSelectedItem());
+	    lblGenero_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblGenero_1.setBounds(233, 20, 124, 28);
+	    panelInfoGeneral.add(lblGenero_1);
+	    
+	    JLabel lblLugarNacimiento = new JLabel(textFieldNacimiento.getText());
+	    lblLugarNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblLugarNacimiento.setBounds(233, 60, 124, 28);
+	    panelInfoGeneral.add(lblLugarNacimiento);
+	    
+	    JLabel lblNacionalidad = new JLabel((String) comboBoxNacionalidad.getSelectedItem());
+	    lblNacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNacionalidad.setBounds(233, 100, 124, 28);
+	    panelInfoGeneral.add(lblNacionalidad);
+	    
+	    JLabel lblTelefono = new JLabel(textFieldTelefono.getText());
+	    lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblTelefono.setBounds(233, 140, 124, 28);
+	    panelInfoGeneral.add(lblTelefono);
+	    
+	    JPanel PanelXD = new JPanel();
+	    PanelXD.setBounds(625, 215, 379, 397);
+	    docenteCreado.add(PanelXD);
+	    PanelXD.setLayout(null);
+	    
+	    JLabel lblDatosDeUbicacin = new JLabel("Datos de Ubicación");
+	    lblDatosDeUbicacin.setFont(new Font("Tahoma", Font.BOLD, 16));
+	    lblDatosDeUbicacin.setBounds(28, 23, 262, 28);
+	    PanelXD.add(lblDatosDeUbicacin);
+	    
+	    JLabel lblDomicilio_1 = new JLabel("Domicilio");
+	    lblDomicilio_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblDomicilio_1.setBounds(38, 61, 124, 28);
+	    PanelXD.add(lblDomicilio_1);
+	    
+	    JLabel lblCalles = new JLabel("Entre Calles");
+	    lblCalles.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCalles.setBounds(38, 100, 124, 28);
+	    PanelXD.add(lblCalles);
+	    
+	    JLabel lblCdigoPostal = new JLabel("Código Postal");
+	    lblCdigoPostal.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCdigoPostal.setBounds(38, 140, 124, 28);
+	    PanelXD.add(lblCdigoPostal);
+	    
+	    JLabel lblDatosDeEscolaridad = new JLabel("Datos de escolaridad");
+	    lblDatosDeEscolaridad.setFont(new Font("Tahoma", Font.BOLD, 16));
+	    lblDatosDeEscolaridad.setBounds(28, 192, 262, 28);
+	    PanelXD.add(lblDatosDeEscolaridad);
+	    
+	    JLabel lblNivelEducativo_1 = new JLabel("Nivel Educativo");
+	    lblNivelEducativo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNivelEducativo_1.setBounds(38, 230, 124, 28);
+	    PanelXD.add(lblNivelEducativo_1);
+	    
+	    JLabel lblStatus = new JLabel("Estatus Actual");
+	    lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblStatus.setBounds(38, 270, 124, 28);
+	    PanelXD.add(lblStatus);
+	    
+	    JLabel lblMatricula_1 = new JLabel("Matricula");
+	    lblMatricula_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblMatricula_1.setBounds(38, 309, 124, 28);
+	    PanelXD.add(lblMatricula_1);
+	    
+	    JLabel lblDomicilio = new JLabel(textFieldDomicilio.getText());
+	    lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblDomicilio.setBounds(179, 61, 124, 28);
+	    PanelXD.add(lblDomicilio);
+	    
+	    JLabel lblCalles_1 = new JLabel(textField_2.getText());
+	    lblCalles_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCalles_1.setBounds(179, 100, 124, 28);
+	    PanelXD.add(lblCalles_1);
+	    
+	    JLabel lblCP_1 = new JLabel(textFieldCP.getText());
+	    lblCP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCP_1.setBounds(179, 140, 124, 28);
+	    PanelXD.add(lblCP_1);
+	    
+	    JLabel lblNivelEducativo = new JLabel((String) comboBoxEscolaridad.getSelectedItem());
+	    lblNivelEducativo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNivelEducativo.setBounds(172, 230, 124, 28);
+	    PanelXD.add(lblNivelEducativo);
+	    
+	    JLabel lblStatusActual = new JLabel((String) comboBoxStatus.getSelectedItem());
+	    lblStatusActual.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblStatusActual.setBounds(172, 270, 124, 28);
+	    PanelXD.add(lblStatusActual);
+	    
+	    JLabel lblMatricula = new JLabel(textFieldMatricula.getText());
+	    lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblMatricula.setBounds(172, 309, 124, 28);
+	    PanelXD.add(lblMatricula);
+	    
+	    JLabel lblApellidoM = new JLabel("Apellido materno:");
+	    lblApellidoM.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoM.setBounds(292, 258, 124, 28);
+	    docenteCreado.add(lblApellidoM);
+	    
+	    JLabel lblApellidoM_1 = new JLabel(textFieldApMaterno.getText());
+	    lblApellidoM_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoM_1.setBounds(446, 258, 124, 28);
+	    docenteCreado.add(lblApellidoM_1);
+	    
+	    JLabel lblCorreo = new JLabel("Correo electronico:");
+	    lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCorreo.setBounds(292, 296, 144, 28);
+	    docenteCreado.add(lblCorreo);
+	    
+	    JLabel lblCorreo_1 = new JLabel(textFieldCorreo.getText());
+	    lblCorreo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCorreo_1.setBounds(446, 296, 124, 28);
+	    docenteCreado.add(lblCorreo_1);
+	    
+	    JLabel lblInfoGeneral = new JLabel("Información General");
+	    lblInfoGeneral.setFont(new Font("Tahoma", Font.PLAIN, 18));
+	    lblInfoGeneral.setBounds(59, 398, 262, 28);
+	    docenteCreado.add(lblInfoGeneral);
+	    
+	    JLabel lblDatosAdicionales = new JLabel("Adicionales");
+	    lblDatosAdicionales.setFont(new Font("Tahoma", Font.PLAIN, 18));
+	    lblDatosAdicionales.setBounds(625, 182, 262, 28);
+	    docenteCreado.add(lblDatosAdicionales);
+	    
+	    JButton btnTerminar = new JButton("Finalizar");
+	    btnTerminar.setBounds(785, 642, 219, 35);
+	    docenteCreado.add(btnTerminar);
+	    
+	    JLabel lblCurp = new JLabel("C.U.R.P");
+	    lblCurp.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCurp.setBounds(292, 334, 144, 28);
+	    docenteCreado.add(lblCurp);
+	    
+	    JLabel lblCurp_1 = new JLabel(textFieldCurp.getText());
+	    lblCurp_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCurp_1.setBounds(446, 334, 124, 28);
+	    docenteCreado.add(lblCurp_1);
+	}
 	public void editarDoce() {
 		menuDocentes();
 	    JPanel editarDoce = new JPanel();
@@ -1339,13 +1979,7 @@ public class Ventana extends JFrame {
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
-        });
-		
-		
-		
-	
-
-		
+        });	
 }
 	
 	public void menuDocentes() {
@@ -1441,7 +2075,4 @@ public class Ventana extends JFrame {
 	
 		
 }
-	
 }
-
-	
