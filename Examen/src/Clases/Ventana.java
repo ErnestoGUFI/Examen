@@ -4,18 +4,23 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -23,6 +28,7 @@ import javax.swing.JComboBox;
 public class Ventana extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	protected static final JOptionPane JOpctionPaneJOptionPane = null;
 	private JPanel contentPane;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApPaterno;
@@ -60,21 +66,134 @@ public class Ventana extends JFrame {
 	public Ventana() {
 	    contentPane = new JPanel();
 	    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	    
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setSize(1080, 760);
+	    setLocationRelativeTo(null);
+	    
 	    
 	    probarComponentes();
 
 	}
 	
 	public void probarComponentes() {
-		this.descargarDoce();
+		this.login();
 	}
 	
+	public void login() {
+ 
+    JPanel login = new JPanel();
+    login.setLayout(null);
+    login.setBackground(new Color(64, 0, 128));
+    
+    JLabel loginDentro = new JLabel();
+    loginDentro.setLocation(173, 131);
+    loginDentro.setLayout(null);
+    loginDentro.setBackground(new Color(128, 0, 255));
+    loginDentro.setSize(700,500);
+    loginDentro.setOpaque(rootPaneCheckingEnabled);
+    login.add(loginDentro);
+
+    JLabel loginTag = new JLabel("Inicio De Sesion",0);
+    loginTag.setSize(500, 80);
+    loginTag.setLocation(271, 40);
+    loginTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
+    loginTag.setForeground(Color.white);
+    login.add(loginTag);
+    
+
+    JLabel loginTag2 = new JLabel("Mi Cuenta",0);
+    loginTag2.setSize(300, 80);
+    loginTag2.setLocation(200, 10);
+    loginTag2.setFont(new Font("Arial Black", Font.ITALIC, 48));
+    loginTag2.setForeground(Color.decode("#FFCC00"));
+    loginDentro.add(loginTag2);
+    
+
+
+    //texto de usuario
+    JLabel usuario = new JLabel("INGRESA TU USUARIO");
+    usuario.setSize(400, 20);
+    usuario.setLocation(250, 150);
+    usuario.setFont(new Font("Arial Black", Font.ITALIC, 16));
+    usuario.setForeground(Color.WHITE);
+    loginDentro.add(usuario);
+
+    //ingresar usuario
+    JTextField usuarioTexto = new JTextField();
+    usuarioTexto.setSize(400, 50);
+    usuarioTexto.setLocation(150, 180);
+    loginDentro.add(usuarioTexto);
+
+    //texto de contraseña
+    JLabel contrasena = new JLabel("INGRESA TU CONTRASEÑA");
+    contrasena.setSize(400, 20);
+    contrasena.setLocation(220, 250);
+    contrasena.setFont(new Font("Arial Black", Font.ITALIC, 16));
+    contrasena.setForeground(Color.WHITE);
+    loginDentro.add(contrasena);
+
+    //ingresar contraseña
+    JPasswordField contrasenaTexto = new JPasswordField();
+    contrasenaTexto.setSize(400, 50);
+    contrasenaTexto.setLocation(150, 280);
+    loginDentro.add(contrasenaTexto);
+
+    // Checkbox para recordar usuario
+    JCheckBox recordarme = new JCheckBox("Recordarme");
+    recordarme.setOpaque(false);
+    recordarme.setSize(150, 20);
+    recordarme.setLocation(150, 340);
+    recordarme.setForeground(Color.WHITE);
+    recordarme.setFont(new Font("Arial Black", Font.ITALIC, 16));
+    loginDentro.add(recordarme);
+   
+
+    // Botón de Acceder
+    JButton botonAcceder = new JButton("Acceder");
+    botonAcceder.setSize(150, 40);
+    botonAcceder.setLocation(270, 400);
+    botonAcceder.setBackground(Color.decode("#FFCC00"));
+    botonAcceder.setFont(new Font("Arial Black", Font.ITALIC, 24));
+    botonAcceder.addActionListener(new ActionListener(){
+    	
+    	
+    	public void actionPerformed(ActionEvent e) {
+    		String usr = usuarioTexto.getText();
+    		String pwd = new String(contrasenaTexto.getPassword());
+    		
+	    		if (usr.length()<=0) {
+	        		usuarioTexto.setBorder(new LineBorder(Color.red,2,true));
+	        		System.out.println("no jala");
+	        	
+	    		}else {
+	    			usuarioTexto.setBorder(new LineBorder(Color.green,2,true));
+	    		}
+    			if(pwd.length()<=0) {
+    				contrasenaTexto.setBorder(new LineBorder(Color.red,2,true));
+    				System.out.println("Bienvenido");
+    			}else {
+    				contrasenaTexto.setBorder(new LineBorder(Color.green,2,true));
+    			}
+    			if(usr.length()>0 && pwd.length()>0) {
+    				getContentPane().removeAll();
+    	    		inicio();
+    	    		getContentPane().revalidate();
+    	    		getContentPane().repaint();
+    			}
+    			
+    			
+    	}
+    });
+
+    loginDentro.add(botonAcceder);
+
+    getContentPane().add(login);
+    }
+
+
 	public void inicio() {
 
-    	
+		menuInicio();
     	
     	JPanel inicio = new JPanel();
     	inicio .setLayout(null);
@@ -119,6 +238,7 @@ public class Ventana extends JFrame {
 	
 	public void panelDocentes() {
 	
+		menuDocentes();
     	
     	JPanel inicio = new JPanel();
     	inicio .setLayout(null);
@@ -201,6 +321,7 @@ public class Ventana extends JFrame {
 	
 	public void panelAlumnos() {
 	
+		menuAlumnos();
     	
     	JPanel inicio = new JPanel();
     	inicio .setLayout(null);
@@ -365,7 +486,7 @@ public class Ventana extends JFrame {
 	    lbl_altaAlumno.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 	    crearAlumno.add(lbl_altaAlumno);
 	    
-	    JLabel lblNewLabel_1 = new JLabel("1.- Registrar información básica de alumno");
+	    JLabel lblNewLabel_1 = new JLabel("Registrar información básica de alumno");
 	    lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
 	    lblNewLabel_1.setBounds(286, 51, 459, 25);
 	    crearAlumno.add(lblNewLabel_1);
@@ -551,7 +672,7 @@ public class Ventana extends JFrame {
 	    
 	    String telefono[] = {"Particular","Teléfono Celular"};
 	    
-	    JComboBox comboBox_1 = new JComboBox(telefono);
+	    comboBox_1 = new JComboBox(telefono);
 	    comboBox_1.setBounds(243, 418, 144, 21);
 	    crearAlumno.add(comboBox_1);
 	    
@@ -585,9 +706,9 @@ public class Ventana extends JFrame {
 	    lblNivelEducativo.setBounds(63, 628, 139, 19);
 	    crearAlumno.add(lblNivelEducativo);
 	    
-	    String escolaridad[] = {"Licenciatura","Ingenieria","Maestria","Doctorado"};
+	    String escolaridad[] = {"Primaria","Secundaria","Preparatoria"};
 	    
-	    JComboBox comboBoxEscolaridad = new JComboBox(escolaridad);
+	    comboBoxEscolaridad = new JComboBox(escolaridad);
 	    comboBoxEscolaridad.setBounds(243, 628, 144, 21);
 	    crearAlumno.add(comboBoxEscolaridad);
 	
@@ -598,7 +719,7 @@ public class Ventana extends JFrame {
 	    
 	    String status[] = {"Activo","Inactivo"};
 	    
-	    JComboBox comboBoxStatus = new JComboBox(status);
+	    comboBoxStatus = new JComboBox(status);
 	    comboBoxStatus.setBounds(496, 628, 146, 21);
 	    crearAlumno.add(comboBoxStatus);
 	    
@@ -652,136 +773,212 @@ public class Ventana extends JFrame {
 	
 	public void alumnoCreado() {
 		menuAlumnos();
-	    JPanel panelAlumnoEncontrado = new JPanel();
-	    panelAlumnoEncontrado.setBackground(new Color(255, 255, 255));
-	    getContentPane().add(panelAlumnoEncontrado);
-	    panelAlumnoEncontrado.setLayout(null);
-
-	    JLabel lbl_alumnoEncontrado = new JLabel("Información del alumno");
-	    lbl_alumnoEncontrado.setForeground(new Color(0, 0, 128));
-	    lbl_alumnoEncontrado.setBounds(33, 34, 250, 25);
-	    lbl_alumnoEncontrado.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-	    panelAlumnoEncontrado.add(lbl_alumnoEncontrado);
-
-	    JPanel panelDatos = new JPanel();
-	    panelDatos.setBackground(new Color(128, 255, 128));
-	    panelDatos.setBounds(10, 10, 1046, 117);
-	    panelAlumnoEncontrado.add(panelDatos);
-
-	    JPanel panelImagen = new JPanel();
-	    panelImagen.setBackground(new Color(255, 250, 240));
-	    panelImagen.setBounds(732, 179, 274, 314);
-	    panelAlumnoEncontrado.add(panelImagen);
-	    panelImagen.setLayout(null);
-
+	    JPanel alumnoCreado = new JPanel();
+	    alumnoCreado.setBackground(new Color(255, 255, 255));
+	    getContentPane().add(alumnoCreado);
+	    alumnoCreado.setLayout(null);
+	    
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setBackground(new Color(128, 255, 128));
+	    panel_1.setBounds(10, 10, 1046, 117);
+	    alumnoCreado.add(panel_1);
+	    panel_1.setLayout(null);
+	    
+	    JLabel lblNewLabel = new JLabel("Consultar información de alumnos");
+	    lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+	    lblNewLabel.setBounds(326, 21, 460, 61);
+	    panel_1.add(lblNewLabel);
+	    
+	    JPanel panelLogoEscuela = new JPanel();
+	    panelLogoEscuela.setBounds(51, 21, 123, 86);
+	    panel_1.add(panelLogoEscuela);
+	    
 	    JPanel panelFoto = new JPanel();
-	    panelFoto.setBounds(39, 51, 205, 204);
-	    panelImagen.add(panelFoto);
-
-	    JLabel lbl_ImagenAlumno = new JLabel("Imagen del alumno");
-	    lbl_ImagenAlumno.setBounds(76, 18, 144, 23);
-	    panelImagen.add(lbl_ImagenAlumno);
-	    lbl_ImagenAlumno.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-	    JPanel panelDatosBasicos = new JPanel();
-	    panelDatosBasicos.setBounds(10, 137, 632, 28);
-	    panelAlumnoEncontrado.add(panelDatosBasicos);
-	    panelDatosBasicos.setLayout(null);
-
-	    JLabel lblDatosBasicos = new JLabel("Datos Básicos");
-	    lblDatosBasicos.setFont(new Font("Tahoma", Font.PLAIN, 17));
-	    lblDatosBasicos.setBounds(48, 7, 154, 14);
-	    panelDatosBasicos.add(lblDatosBasicos);
-
+	    panelFoto.setBounds(59, 182, 183, 178);
+	    alumnoCreado.add(panelFoto);
+	    
 	    JLabel lblNombre = new JLabel("Nombre:");
 	    lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblNombre.setBounds(63, 175, 124, 28);
-	    panelAlumnoEncontrado.add(lblNombre);
-
-	    JLabel lblNombreValor = new JLabel(textFieldNombre.getText());
-	    lblNombreValor.setBounds(243, 182, 399, 19);
-	    panelAlumnoEncontrado.add(lblNombreValor);
-
-	    JLabel lblApPaterno = new JLabel("Apellido Paterno:");
-	    lblApPaterno.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblApPaterno.setBounds(63, 213, 124, 19);
-	    panelAlumnoEncontrado.add(lblApPaterno);
-
-	    JLabel lblApPaternoValor = new JLabel(textFieldApPaterno.getText());
-	    lblApPaternoValor.setBounds(243, 211, 399, 19);
-	    panelAlumnoEncontrado.add(lblApPaternoValor);
-
-	    JLabel lblApellidoMaterno = new JLabel("Apellido Materno:");
-	    lblApellidoMaterno.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblApellidoMaterno.setBounds(63, 242, 124, 19);
-	    panelAlumnoEncontrado.add(lblApellidoMaterno);
-
-	    JLabel lblApellidoMaternoValor = new JLabel(textFieldApMaterno.getText());
-	    lblApellidoMaternoValor.setBounds(243, 240, 399, 19);
-	    panelAlumnoEncontrado.add(lblApellidoMaternoValor);
-
-	    JLabel lblGenero = new JLabel("Género:");
-	    lblGenero.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblGenero.setBounds(63, 271, 124, 19);
-	    panelAlumnoEncontrado.add(lblGenero);
-
-	    JLabel lblGeneroValor = new JLabel((String) comboBoxGeneros.getSelectedItem());
-	    lblGeneroValor.setBounds(243, 269, 103, 21);
-	    panelAlumnoEncontrado.add(lblGeneroValor);
-
-	    JLabel lblLugarNacimiento = new JLabel("Lugar de Nacimiento:");
+	    lblNombre.setBounds(292, 182, 124, 28);
+	    alumnoCreado.add(lblNombre);
+	    
+	    JLabel lblNombre_1 = new JLabel(textFieldNombre.getText());
+	    lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNombre_1.setBounds(446, 182, 124, 28);
+	    alumnoCreado.add(lblNombre_1);
+	    
+	    JLabel lblApellidoP = new JLabel("Apellido paterno:");
+	    lblApellidoP.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoP.setBounds(292, 220, 124, 28);
+	    alumnoCreado.add(lblApellidoP);
+	    
+	    JLabel lblApellidoP_1 = new JLabel(textFieldApPaterno.getText());
+	    lblApellidoP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoP_1.setBounds(446, 220, 124, 28);
+	    alumnoCreado.add(lblApellidoP_1);
+	    
+	    JPanel panelInfoGeneral = new JPanel();
+	    panelInfoGeneral.setBounds(59, 433, 511, 179);
+	    alumnoCreado.add(panelInfoGeneral);
+	    panelInfoGeneral.setLayout(null);
+	    
+	    JLabel lblGnero = new JLabel("Género:");
+	    lblGnero.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblGnero.setBounds(40, 20, 124, 28);
+	    panelInfoGeneral.add(lblGnero);
+	    
+	    JLabel lblLugarDeNacimiento = new JLabel("Lugar de Nacimiento: ");
+	    lblLugarDeNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblLugarDeNacimiento.setBounds(40, 60, 161, 28);
+	    panelInfoGeneral.add(lblLugarDeNacimiento);
+	    
+	    JLabel lblNmeroTelefonico = new JLabel("Número telefonico:");
+	    lblNmeroTelefonico.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNmeroTelefonico.setBounds(40, 140, 161, 28);
+	    panelInfoGeneral.add(lblNmeroTelefonico);
+	    
+	    JLabel lblNacionalidad_1 = new JLabel("Nacionalidad:");
+	    lblNacionalidad_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNacionalidad_1.setBounds(40, 100, 161, 28);
+	    panelInfoGeneral.add(lblNacionalidad_1);
+	    
+	    JLabel lblGenero_1 = new JLabel((String) comboBoxGeneros.getSelectedItem());
+	    lblGenero_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblGenero_1.setBounds(233, 20, 124, 28);
+	    panelInfoGeneral.add(lblGenero_1);
+	    
+	    JLabel lblLugarNacimiento = new JLabel(textFieldNacimiento.getText());
 	    lblLugarNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblLugarNacimiento.setBounds(63, 300, 160, 19);
-	    panelAlumnoEncontrado.add(lblLugarNacimiento);
-
-	    JLabel lblLugarNacimientoValor = new JLabel(textFieldNacimiento.getText());
-	    lblLugarNacimientoValor.setBounds(243, 300, 399, 19);
-	    panelAlumnoEncontrado.add(lblLugarNacimientoValor);
-
-	    JLabel lblFechaNacimiento = new JLabel("Fecha de Nacimiento:");
-	    lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblFechaNacimiento.setBounds(63, 329, 160, 19);
-	    panelAlumnoEncontrado.add(lblFechaNacimiento);
-
-	    JLabel lblFechaNacimientoValor = new JLabel((String)comboBoxDias.getSelectedItem()+"/"+(String)comboBoxMes.getSelectedItem()+"/"+(String)comboBoxAnio.getSelectedItem());
-	    lblFechaNacimientoValor.setBounds(243, 329, 399, 19);
-	    panelAlumnoEncontrado.add(lblFechaNacimientoValor);
-
-	    JLabel lblNacionalidad = new JLabel("Nacionalidad:");
+	    lblLugarNacimiento.setBounds(233, 60, 124, 28);
+	    panelInfoGeneral.add(lblLugarNacimiento);
+	    
+	    JLabel lblNacionalidad = new JLabel((String) comboBoxNacionalidad.getSelectedItem());
 	    lblNacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblNacionalidad.setBounds(63, 358, 124, 19);
-	    panelAlumnoEncontrado.add(lblNacionalidad);
-
-	    JLabel lblNacionalidadValor = new JLabel((String) comboBoxNacionalidad.getSelectedItem());
-	    lblNacionalidadValor.setBounds(243, 358, 399, 19);
-	    panelAlumnoEncontrado.add(lblNacionalidadValor);
-
-	    JLabel lblCurp = new JLabel("C.U.R.P:");
-	    lblCurp.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblCurp.setBounds(63, 387, 124, 19);
-	    panelAlumnoEncontrado.add(lblCurp);
-
-	    JLabel lblCurpValor = new JLabel(textFieldCurp.getText());
-	    lblCurpValor.setBounds(243, 387, 399, 19);
-	    panelAlumnoEncontrado.add(lblCurpValor);
-
-	    JLabel lblCorreoElectronico = new JLabel("Correo Electrónico:");
-	    lblCorreoElectronico.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblCorreoElectronico.setBounds(63, 416, 160, 19);
-	    panelAlumnoEncontrado.add(lblCorreoElectronico);
-
-	    JLabel lblCorreoElectronicoValor = new JLabel(textFieldCorreo.getText());
-	    lblCorreoElectronicoValor.setBounds(243, 416, 399, 19);
-	    panelAlumnoEncontrado.add(lblCorreoElectronicoValor);
-
-	    JLabel lblTelefono = new JLabel("Teléfono:");
+	    lblNacionalidad.setBounds(233, 100, 124, 28);
+	    panelInfoGeneral.add(lblNacionalidad);
+	    
+	    JLabel lblTelefono = new JLabel(textFieldTelefono.getText());
 	    lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblTelefono.setBounds(63, 445, 124, 19);
-	    panelAlumnoEncontrado.add(lblTelefono);
-
-	    JLabel lblTelefonoValor = new JLabel(textFieldTelefono.getText());
-	    lblTelefonoValor.setBounds(243, 445, 399, 19);
-	    panelAlumnoEncontrado.add(lblTelefonoValor);
+	    lblTelefono.setBounds(233, 140, 124, 28);
+	    panelInfoGeneral.add(lblTelefono);
+	    
+	    JPanel panelAdicionales = new JPanel();
+	    panelAdicionales.setBounds(625, 215, 379, 397);
+	    alumnoCreado.add(panelAdicionales);
+	    panelAdicionales.setLayout(null);
+	    
+	    JLabel lblDatosDeUbicacin = new JLabel("Datos de Ubicación");
+	    lblDatosDeUbicacin.setFont(new Font("Tahoma", Font.BOLD, 16));
+	    lblDatosDeUbicacin.setBounds(28, 23, 262, 28);
+	    panelAdicionales.add(lblDatosDeUbicacin);
+	    
+	    JLabel lblDomicilio_1 = new JLabel("Domicilio");
+	    lblDomicilio_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblDomicilio_1.setBounds(38, 61, 124, 28);
+	    panelAdicionales.add(lblDomicilio_1);
+	    
+	    JLabel lblCalles = new JLabel("Entre Calles");
+	    lblCalles.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCalles.setBounds(38, 100, 124, 28);
+	    panelAdicionales.add(lblCalles);
+	    
+	    JLabel lblCdigoPostal = new JLabel("Código Postal");
+	    lblCdigoPostal.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCdigoPostal.setBounds(38, 140, 124, 28);
+	    panelAdicionales.add(lblCdigoPostal);
+	    
+	    JLabel lblDatosDeEscolaridad = new JLabel("Datos de escolaridad");
+	    lblDatosDeEscolaridad.setFont(new Font("Tahoma", Font.BOLD, 16));
+	    lblDatosDeEscolaridad.setBounds(28, 192, 262, 28);
+	    panelAdicionales.add(lblDatosDeEscolaridad);
+	    
+	    JLabel lblNivelEducativo_1 = new JLabel("Nivel Educativo");
+	    lblNivelEducativo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNivelEducativo_1.setBounds(38, 230, 124, 28);
+	    panelAdicionales.add(lblNivelEducativo_1);
+	    
+	    JLabel lblStatus = new JLabel("Estatus Actual");
+	    lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblStatus.setBounds(38, 270, 124, 28);
+	    panelAdicionales.add(lblStatus);
+	
+	    JLabel lblDomicilio = new JLabel(textFieldDomicilio.getText());
+	    lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblDomicilio.setBounds(179, 61, 124, 28);
+	    panelAdicionales.add(lblDomicilio);
+	    
+	    JLabel lblCalles_1 = new JLabel(textField_2.getText());
+	    lblCalles_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCalles_1.setBounds(179, 100, 124, 28);
+	    panelAdicionales.add(lblCalles_1);
+	    
+	    JLabel lblCP_1 = new JLabel(textFieldCP.getText());
+	    lblCP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCP_1.setBounds(179, 140, 124, 28);
+	    panelAdicionales.add(lblCP_1);
+	    
+	    JLabel lblNivelEducativo = new JLabel((String) comboBoxEscolaridad.getSelectedItem());
+	    lblNivelEducativo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblNivelEducativo.setBounds(172, 230, 124, 28);
+	    panelAdicionales.add(lblNivelEducativo);
+	    
+	    JLabel lblStatusActual = new JLabel((String) comboBoxStatus.getSelectedItem());
+	    lblStatusActual.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblStatusActual.setBounds(172, 270, 124, 28);
+	    panelAdicionales.add(lblStatusActual);
+	
+	    JLabel lblApellidoM = new JLabel("Apellido materno:");
+	    lblApellidoM.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoM.setBounds(292, 258, 124, 28);
+	    alumnoCreado.add(lblApellidoM);
+	    
+	    JLabel lblApellidoM_1 = new JLabel(textFieldApMaterno.getText());
+	    lblApellidoM_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblApellidoM_1.setBounds(446, 258, 124, 28);
+	    alumnoCreado.add(lblApellidoM_1);
+	    
+	    JLabel lblCorreo = new JLabel("Correo electronico:");
+	    lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCorreo.setBounds(292, 296, 144, 28);
+	    alumnoCreado.add(lblCorreo);
+	    
+	    JLabel lblCorreo_1 = new JLabel(textFieldCorreo.getText());
+	    lblCorreo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCorreo_1.setBounds(446, 296, 124, 28);
+	    alumnoCreado.add(lblCorreo_1);
+	    
+	    JLabel lblInfoGeneral = new JLabel("Información General");
+	    lblInfoGeneral.setFont(new Font("Tahoma", Font.PLAIN, 18));
+	    lblInfoGeneral.setBounds(59, 398, 262, 28);
+	    alumnoCreado.add(lblInfoGeneral);
+	    
+	    JLabel lblDatosAdicionales = new JLabel("Adicionales");
+	    lblDatosAdicionales.setFont(new Font("Tahoma", Font.PLAIN, 18));
+	    lblDatosAdicionales.setBounds(625, 182, 262, 28);
+	    alumnoCreado.add(lblDatosAdicionales);
+	    
+	    JButton btnTerminar = new JButton("Finalizar");
+	    btnTerminar.setBounds(785, 642, 219, 35);
+	    alumnoCreado.add(btnTerminar);
+	    btnTerminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {      	
+            	JOpctionPaneJOptionPane.showMessageDialog(null, "Alumno creado con exito", "Alumno Creado", JOptionPane.INFORMATION_MESSAGE);
+                getContentPane().removeAll();
+                panelAlumnos();
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        });
+	    
+	    JLabel lblCurp = new JLabel("C.U.R.P");
+	    lblCurp.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCurp.setBounds(292, 334, 144, 28);
+	    alumnoCreado.add(lblCurp);
+	    
+	    JLabel lblCurp_1 = new JLabel(textFieldCurp.getText());
+	    lblCurp_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	    lblCurp_1.setBounds(446, 334, 124, 28);
+	    alumnoCreado.add(lblCurp_1);
 	}
 	
 	public void alumnoEncontrado() {
@@ -918,7 +1115,6 @@ public class Ventana extends JFrame {
 	    panelAlumnoEncontrado.add(lblTelefonoValor);
 	}
 
-	
 	public void editarAlu() {
 		menuAlumnos();
 		JPanel editarAlu = new JPanel();
@@ -1124,7 +1320,7 @@ public class Ventana extends JFrame {
 	    lblMatricula_1.setBounds(689, 379, 87, 28);
 	    panel_2.add(lblMatricula_1);
 	}
-	//Tengo que poner valores predeterminados
+	
 	public void consultarDoce() {
 	    menuDocentes();
 	    JPanel consultarDoce = new JPanel();
@@ -1663,6 +1859,7 @@ public class Ventana extends JFrame {
 	    crearDoce.add(textFieldNacimiento);
 	  
 	}
+	
 	public void docenteCreado() {
 		menuDocentes();
 	    JPanel docenteCreado = new JPanel();
@@ -1873,6 +2070,7 @@ public class Ventana extends JFrame {
 	    lblCurp_1.setBounds(446, 334, 124, 28);
 	    docenteCreado.add(lblCurp_1);
 	}
+	
 	public void editarDoce() {
 		menuDocentes();
 	    JPanel editarDoce = new JPanel();
@@ -1893,6 +2091,31 @@ public class Ventana extends JFrame {
 	    eliminarDoce.add(lblNewLabel);
 	}
 	
+	public void menuInicio() {
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Cuenta");
+		menuBar.add(mnNewMenu);
+
+		
+		JMenuItem volverPanel = new JMenuItem("Cerrar Sesion");
+		mnNewMenu.add(volverPanel);
+		volverPanel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	menuBar.setVisible(false);
+            	JOpctionPaneJOptionPane.showMessageDialog(null, "Sesion cerrada correctamente", "Sesion Cerrada", JOptionPane.INFORMATION_MESSAGE);
+                getContentPane().removeAll();
+                login();
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        });
+		
+
+        
+}
+	
 	public void menuAlumnos() {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -1904,6 +2127,7 @@ public class Ventana extends JFrame {
 		mnNewMenu.add(volverInicio);
 		volverInicio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	menuBar.setVisible(false);
                 getContentPane().removeAll();
                 inicio();
                 getContentPane().revalidate();
@@ -1915,8 +2139,22 @@ public class Ventana extends JFrame {
 		mnNewMenu.add(volverPanel);
 		volverPanel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
                 getContentPane().removeAll();
                 panelAlumnos();
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        });
+		
+		JMenuItem cerrarSesion = new JMenuItem("Cerrar Sesion");
+		mnNewMenu.add(cerrarSesion);
+		cerrarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	JOpctionPaneJOptionPane.showMessageDialog(null, "Sesion cerrada correctamente", "Sesion Cerrada", JOptionPane.INFORMATION_MESSAGE);
+            	menuBar.setVisible(false);
+                getContentPane().removeAll();
+                login();
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
@@ -1993,6 +2231,7 @@ public class Ventana extends JFrame {
 		mnNewMenu.add(volverInicio);
 		volverInicio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	menuBar.setVisible(false);
                 getContentPane().removeAll();
                 inicio();
                 getContentPane().revalidate();
@@ -2006,6 +2245,19 @@ public class Ventana extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 getContentPane().removeAll();
                 panelDocentes();
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        });
+		
+		JMenuItem cerrarSesion = new JMenuItem("Cerrar Sesion");
+		mnNewMenu.add(cerrarSesion);
+		cerrarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	JOpctionPaneJOptionPane.showMessageDialog(null, "Sesion cerrada correctamente", "Sesion Cerrada", JOptionPane.INFORMATION_MESSAGE);
+            	menuBar.setVisible(false);
+                getContentPane().removeAll();
+                login();
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
