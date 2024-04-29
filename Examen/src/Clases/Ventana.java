@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -66,20 +67,9 @@ public class Ventana extends JFrame {
 				}
 			}
 		});
-		
-		try {
-           
-            System.setProperty("apple.laf.useScreenMenuBar", "true");
-            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Test");
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-
-		UIManager.put("Button.mouseHoverColor", new Color(255, 0, 0));
 	}
-	
-	
+		
+
 	public Ventana() {
 		
 		
@@ -239,7 +229,7 @@ public class Ventana extends JFrame {
         docentes.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        getContentPane().removeAll();
-		        ingresoConsultarDoce();
+		        panelDocentes();
 		        getContentPane().revalidate();
 		        getContentPane().repaint(); 
 		    }
@@ -260,27 +250,28 @@ public class Ventana extends JFrame {
         
     }
 	
-	public void panelDocentes() {
-	
+	public void panelDocentesConsultar() {
+
+		
 		menuDocentes();
     	
     	JPanel inicio = new JPanel();
     	inicio .setLayout(null);
     	inicio.setBackground(new Color(255, 255, 255));
       
-        JLabel holaTag = new JLabel("Seleccione que desea hacer!",0);
+        JLabel holaTag = new JLabel("Docente Encontrado!",0);
         holaTag.setSize(810, 80);
         holaTag.setLocation(124, 26);
         holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
-        holaTag.setForeground(new Color(244, 145, 42));
+        holaTag.setForeground(new Color(128, 255, 0));
         holaTag.setBackground(Color.black);
         inicio.add(holaTag);
         
 
         getContentPane().add(inicio);
         
-        JButton descargarDoce = new JButton("Descargar Informacion");
-        descargarDoce.addActionListener(new ActionListener() {
+        JButton descargarAlu = new JButton("Descargar Informacion");
+        descargarAlu.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
     	        getContentPane().removeAll();
     	        descargarDoce();
@@ -288,33 +279,21 @@ public class Ventana extends JFrame {
     	        getContentPane().repaint();
     	    }
     	});
-        descargarDoce.setBounds(100, 150, 200, 200);
-        inicio.add(descargarDoce);
+        descargarAlu.setBounds(264, 150, 200, 200);
+        inicio.add(descargarAlu);
         
-        JButton consultarDoce = new JButton("Consultar");
-        consultarDoce.addActionListener(new ActionListener() {
+        JButton consultarAlu = new JButton("Consultar");
+        consultarAlu.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
     	        getContentPane().removeAll();
-    	        consultarDoce();
+    	        docenteEncontrado();
     	        getContentPane().revalidate();
     	        getContentPane().repaint();
     	    }
     	});
-        consultarDoce.setBounds(400, 150, 200, 200);
-        inicio.add(consultarDoce);
-        
-        JButton crearDoce = new JButton("Crear");
-        crearDoce.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        crearDoce();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        crearDoce.setBounds(700, 150, 200, 200);
-        inicio.add(crearDoce);
-        
+        consultarAlu.setBounds(582, 150, 200, 200);
+        inicio.add(consultarAlu);
+   
         JButton editarDoce = new JButton("Editar");
         editarDoce.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
@@ -324,11 +303,11 @@ public class Ventana extends JFrame {
     	        getContentPane().repaint();
     	    }
     	});
-        editarDoce.setBounds(250, 400, 200, 200);
+        editarDoce.setBounds(264, 400, 200, 200);
         inicio.add(editarDoce);
         
-        JButton eliminarDoce = new JButton("Eliminar");
-        eliminarDoce.addActionListener(new ActionListener() {
+        JButton eliminarAlu = new JButton("Eliminar");
+        eliminarAlu.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
     	        getContentPane().removeAll();
     	        eliminarDoce();
@@ -336,66 +315,73 @@ public class Ventana extends JFrame {
     	        getContentPane().repaint();
     	    }
     	});
-        eliminarDoce.setBounds(550, 400, 200, 200);
-        inicio.add(eliminarDoce);
+        eliminarAlu.setBounds(582, 400, 200, 200);
+        inicio.add(eliminarAlu);
         
         
 		
 	}
 	
 	public void panelAlumnos() {
-	
-		menuInicio();
-    	
-    	JPanel inicio = new JPanel();
-    	inicio .setLayout(null);
-    	inicio.setBackground(new Color(255, 255, 255));
-      
-        JLabel holaTag = new JLabel("Seleccione que desea hacer!",0);
-        holaTag.setSize(810, 80);
-        holaTag.setLocation(124, 26);
-        holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
-        holaTag.setForeground(new Color(244, 145, 42));
-        holaTag.setBackground(Color.black);
-        inicio.add(holaTag);
-        
+	    menuInicio();
+	    
+	    JPanel inicio = new JPanel();
+	    inicio.setLayout(null);
+	    inicio.setBackground(new Color(255, 255, 255));
+	  
+	    JLabel holaTag = new JLabel("Seleccione qué desea hacer!");
+	    holaTag.setSize(810, 80);
+	    holaTag.setLocation(124, 26);
+	    holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
+	    holaTag.setForeground(new Color(244, 145, 42));
+	    holaTag.setBackground(Color.black);
+	    inicio.add(holaTag);
 
-        getContentPane().add(inicio);
-        
-        ImageIcon iconoDescargar = new ImageIcon("ruta_de_la_imagen_para_descargar.png");
-        JButton descargarAlu = new JButton(iconoDescargar);
-        descargarAlu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                getContentPane().removeAll();
-                consultarAlu();
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
-        });
-        descargarAlu.setBounds(0, 117, 533, 582);
-        inicio.add(descargarAlu);
+	    getContentPane().add(inicio);
 
-        // Crear ImageIcon con la imagen para el botón "Crear Alumno"
-        ImageIcon iconoCrear = new ImageIcon("ruta_de_la_imagen_para_crear.png");
-        JButton crearAlu = new JButton(iconoCrear);
-        crearAlu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                getContentPane().removeAll();
-                crearAlu();
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
-        });
-        crearAlu.setBounds(531, 117, 533, 582);
-        inicio.add(crearAlu);
-        
-        
-        
-        
-		
+	    JButton descargarAlu = new JButton();      
+	    descargarAlu.setLayout(new BorderLayout()); 
+	    JLabel textoDescargar = new JLabel("ALUMNO EXISTENTE", SwingConstants.CENTER);
+	    textoDescargar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+	    ImageIcon iconoDescargar = new ImageIcon(Ventana.class.getResource("/Clases/alumnoExistente.png"));
+	    JLabel imagenDescargar = new JLabel(iconoDescargar, SwingConstants.CENTER); 
+	    descargarAlu.add(textoDescargar, BorderLayout.NORTH); 
+	    descargarAlu.add(imagenDescargar, BorderLayout.CENTER); 
+	    descargarAlu.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            getContentPane().removeAll();
+	            consultarAlu();
+	            getContentPane().revalidate();
+	            getContentPane().repaint();
+	        }
+	    });
+	    descargarAlu.setBounds(0, 117, 530, 582);
+	    inicio.add(descargarAlu);
+
+	    JButton crearAlu = new JButton();
+	    crearAlu.setLayout(new BorderLayout()); 
+	    JLabel textoCrear = new JLabel("CREAR NUEVO ALUMNO", SwingConstants.CENTER);
+	    textoCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+	    ImageIcon iconoCrear = new ImageIcon(Ventana.class.getResource("/Clases/register.png"));
+	    Image imagenEscalada = iconoCrear.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+	    ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+	    JLabel imagenCrear = new JLabel(iconoEscalado, SwingConstants.CENTER);
+	    crearAlu.add(textoCrear, BorderLayout.NORTH); 
+	    crearAlu.add(imagenCrear, BorderLayout.CENTER); 
+	    crearAlu.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            getContentPane().removeAll();
+	            crearAlu();
+	            getContentPane().revalidate();
+	            getContentPane().repaint();
+	        }
+	    });
+	    crearAlu.setBounds(534, 117, 530, 582);
+	    inicio.add(crearAlu);
 	}
 
 	public void panelAlumnosConsultar() {
+
 		
 		menuAlumnos();
     	
@@ -464,6 +450,64 @@ public class Ventana extends JFrame {
         
         
 		
+	}
+	
+	public void panelDocentes() {
+	    menuInicio();
+	    
+	    JPanel inicio = new JPanel();
+	    inicio.setLayout(null);
+	    inicio.setBackground(new Color(255, 255, 255));
+	  
+	    JLabel holaTag = new JLabel("Seleccione qué desea hacer!");
+	    holaTag.setSize(810, 80);
+	    holaTag.setLocation(124, 26);
+	    holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
+	    holaTag.setForeground(new Color(244, 145, 42));
+	    holaTag.setBackground(Color.black);
+	    inicio.add(holaTag);
+
+	    getContentPane().add(inicio);
+
+	    JButton docenteExistente = new JButton();      
+	    docenteExistente.setLayout(new BorderLayout()); 
+	    JLabel textoDescargar = new JLabel("DOCENTE EXISTENTE", SwingConstants.CENTER);
+	    textoDescargar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+	    ImageIcon iconoDescargar = new ImageIcon(Ventana.class.getResource("/Clases/alumnoExistente.png"));
+	    JLabel imagenDescargar = new JLabel(iconoDescargar, SwingConstants.CENTER); 
+	    docenteExistente.add(textoDescargar, BorderLayout.NORTH); 
+	    docenteExistente.add(imagenDescargar, BorderLayout.CENTER); 
+	    docenteExistente.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            getContentPane().removeAll();
+	            consultarDoce();
+	            getContentPane().revalidate();
+	            getContentPane().repaint();
+	        }
+	    });
+	    docenteExistente.setBounds(0, 117, 530, 582);
+	    inicio.add(docenteExistente);
+
+	    JButton crearAlu = new JButton();
+	    crearAlu.setLayout(new BorderLayout()); 
+	    JLabel textoCrear = new JLabel("CREAR NUEVO DOCENTE", SwingConstants.CENTER);
+	    textoCrear.setFont(new Font("Tahoma", Font.PLAIN, 24));
+	    ImageIcon iconoCrear = new ImageIcon(Ventana.class.getResource("/Clases/register.png"));
+	    Image imagenEscalada = iconoCrear.getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+	    ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+	    JLabel imagenCrear = new JLabel(iconoEscalado, SwingConstants.CENTER);
+	    crearAlu.add(textoCrear, BorderLayout.NORTH); 
+	    crearAlu.add(imagenCrear, BorderLayout.CENTER); 
+	    crearAlu.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            getContentPane().removeAll();
+	            crearDoce();
+	            getContentPane().revalidate();
+	            getContentPane().repaint();
+	        }
+	    });
+	    crearAlu.setBounds(534, 117, 530, 582);
+	    inicio.add(crearAlu);
 	}
 	
 	public void descargarAlu() {
@@ -768,7 +812,7 @@ public class Ventana extends JFrame {
 	    docenteIcono.setBounds(10, 0, 128, 128);
 	    panel_1.add(docenteIcono);
 	    docenteIcono.setIcon(new ImageIcon(getClass().getResource("iconoAlumno.png")));
-	    
+	
 	    JButton btnPanelAlumno = new JButton();
 	    btnPanelAlumno.setBorderPainted(false);
 	    btnPanelAlumno.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
@@ -777,6 +821,8 @@ public class Ventana extends JFrame {
 	    btnPanelAlumno.setBackground(new Color(250, 128, 114));
 	    btnPanelAlumno.setBounds(138, 35, 293, 58);
 	    panel_1.add(btnPanelAlumno);
+	    
+	    
 	    
 	    btnPanelAlumno.addActionListener(new ActionListener() {
 
@@ -2033,7 +2079,7 @@ public class Ventana extends JFrame {
 				JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
 				
 				getContentPane().removeAll();
-				panelAlumnosConsultar();
+				panelAlumnos();
                 getContentPane().revalidate();
                 getContentPane().repaint();
 			}
@@ -2041,9 +2087,9 @@ public class Ventana extends JFrame {
 	    });
 	    
 	    JLabel docenteIcono = new JLabel();
-	    docenteIcono.setBounds(0, 0, 128, 128);
+	    docenteIcono.setBounds(0, 0, 128, 117);
 	    panel_1.add(docenteIcono);
-	    docenteIcono.setIcon(new ImageIcon(getClass().getResource("docenteIcono.png")));
+	    docenteIcono.setIcon(new ImageIcon(getClass().getResource("iconoAlumno.png")));
 	    
 	    JLabel eliminarUsuario = new JLabel();
 	    eliminarUsuario.setBounds(918, 0, 128, 128);
@@ -2212,7 +2258,7 @@ public class Ventana extends JFrame {
 	    PanelXD.add(lblStatusActual);
 	    
 	    JLabel lblCodigoControl_1 = new JLabel();
-	    lblCodigoControl_1.setText("21324565");
+	    lblCodigoControl_1.setText(textFieldCodigo.getText());
 	    lblCodigoControl_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCodigoControl_1.setBounds(172, 309, 124, 28);
 	    PanelXD.add(lblCodigoControl_1);
@@ -2286,9 +2332,114 @@ public class Ventana extends JFrame {
 	    datosIcono.setIcon(new ImageIcon(getClass().getResource("personalData.png")));
 	    
 	    JPanel panel = new JPanel();
-	    panel.setBackground(new Color(255, 204, 102));
+	    panel.setBackground(new Color(255, 255, 255));
 	    panel.setBounds(10, 137, 1046, 554);
 	    eliminarAlumno.add(panel);
+	}
+	
+	public void consultarDoce() {
+		
+	
+		
+		menuInicio();
+	    JPanel buscarDocente = new JPanel();
+	    buscarDocente.setBackground(new Color(255, 255, 255));
+	    getContentPane().add(buscarDocente);
+	    buscarDocente.setLayout(null);
+ 
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBounds(10, 10, 1046, 117);
+	    buscarDocente.add(panel_1);
+	    panel_1.setLayout(null);
+	    
+	    JLabel docenteIcono = new JLabel();
+	    docenteIcono.setBounds(10, 0, 128, 128);
+	    panel_1.add(docenteIcono);
+	    docenteIcono.setIcon(new ImageIcon(getClass().getResource("docenteIcono.png")));
+	
+	    JButton btnPanelDocente = new JButton();
+	    btnPanelDocente.setBorderPainted(false);
+	    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
+	    btnPanelDocente.setOpaque(false);
+	    btnPanelDocente.setText("Panel Docente");
+	    btnPanelDocente.setBackground(new Color(250, 128, 114));
+	    btnPanelDocente.setBounds(138, 35, 293, 58);
+	    panel_1.add(btnPanelDocente);
+	    
+	    
+	    
+	    btnPanelDocente.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				getContentPane().removeAll();
+				panelDocentes();
+                getContentPane().revalidate();
+                getContentPane().repaint();
+			}
+	    	
+	    });
+
+	    JPanel pnlDatosBasicos = new JPanel();
+	    pnlDatosBasicos.setBounds(0, 312, 1064, 28);
+	    buscarDocente.add(pnlDatosBasicos);
+	    pnlDatosBasicos.setLayout(null);
+	    
+	    JLabel lblDatosBasicos = new JLabel("Ingresa la matricula de el profesor");
+	    lblDatosBasicos.setFont(new Font("Tahoma", Font.PLAIN, 17));
+	    lblDatosBasicos.setBounds(381, 0, 255, 25);
+	    pnlDatosBasicos.add(lblDatosBasicos);
+
+	    textFieldMatricula = new JTextField();
+	    textFieldMatricula.setBounds(312, 351, 409, 19);
+	    buscarDocente.add(textFieldMatricula);
+	    textFieldMatricula.setColumns(10);
+
+	    JButton btnNewButton = new JButton("Consultar");
+        btnNewButton.setBounds(470, 381, 89, 23);
+        buscarDocente.add(btnNewButton);
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(textFieldMatricula.getText().length() != 0) {
+                    btnNewButton.setEnabled(false);
+                    
+                   //de aqui pa abajo puedes copiarlo en donde quieras una barra, el Thread controla el tiempo que tarda en cargar
+                    progressBar = new JProgressBar();
+                    progressBar.setIndeterminate(true);
+                    progressBar.setBounds(360, 420, 310, 30);
+                    buscarDocente.add(progressBar);
+                    
+                    
+                    new Thread(() -> {
+                        
+                        try {
+                            Thread.sleep(2000); 
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+
+                       
+                        SwingUtilities.invokeLater(() -> {
+                        	buscarDocente.remove(progressBar);
+                            btnNewButton.setEnabled(true);
+                            getContentPane().revalidate();
+                            getContentPane().repaint();
+
+                           
+                            getContentPane().removeAll();
+                            panelDocentesConsultar();
+                            getContentPane().revalidate();
+                            getContentPane().repaint();
+                        });
+                    }).start();
+                } else {
+                	textFieldMatricula.setBorder(new LineBorder(Color.red, 2, true));
+                }
+            }
+        });
+  
 	}
 	
 	public void descargarDoce() {
@@ -2352,7 +2503,7 @@ public class Ventana extends JFrame {
 					JOptionPane.showMessageDialog(null, "Información descargada correctamente");
 					
 					getContentPane().removeAll();
-					panelDocentes();
+					panelDocentesConsultar();
 	                getContentPane().revalidate();
 	                getContentPane().repaint();
 				}
@@ -2520,7 +2671,7 @@ public class Ventana extends JFrame {
 	    lblStatus.setBounds(689, 341, 87, 28);
 	    panel_2.add(lblStatus);
 	    
-	    JLabel lblMatricula_1 = new JLabel(textFieldNombre.getText());
+	    JLabel lblMatricula_1 = new JLabel(textFieldMatricula.getText());
 	    lblMatricula_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblMatricula_1.setBounds(689, 379, 128, 28);
 	    panel_2.add(lblMatricula_1);
@@ -2567,81 +2718,9 @@ public class Ventana extends JFrame {
 	    panel_2.add(infoEscolar);
 		infoEscolar.setIcon(new ImageIcon(getClass().getResource("escolaridad (1).png")));
 	    
-	    JButton btnDescargar = new JButton("Descargar");
-	    btnDescargar.setFont(new Font("Tahoma", Font.PLAIN, 17));
-	    btnDescargar.setBounds(854, 635, 168, 50);
-	    descargarDoce.add(btnDescargar);
-	    
-	    btnDescargar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JOptionPane.showMessageDialog(null, "Información descargada con exito");
-				getContentPane().removeAll();
-		        panelDocentes();
-		        getContentPane().revalidate();
-		        getContentPane().repaint();
-			}
-	    	
-	    });
-	    
 	}
 	
-	public void ingresoConsultarDoce() {
-		menuDocentes();
-	    JPanel panel = new JPanel();
-	    panel.setBackground(new Color(255, 255, 255));
-	    getContentPane().add(panel);
-	    panel.setLayout(null);
-	    
-	    JLabel logoUabcs = new JLabel();
-	    logoUabcs.setBackground(new Color(204, 153, 204));
-		logoUabcs.setIcon(new ImageIcon(getClass().getResource("")));
-		logoUabcs.setBounds(0, 0, 1080, 661);
-		panel.add(logoUabcs);
-	    
-	    JLabel lblConsultoria = new JLabel("Consultoria");
-	    lblConsultoria.setBounds(452, 181, 182, 25);
-	    lblConsultoria.setForeground(new Color(0, 0, 128));
-	    lblConsultoria.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-	    panel.add(lblConsultoria);
-
-	    JPanel pnl2 = new JPanel();
-	    pnl2.setBounds(0, 312, 1064, 28);
-	    panel.add(pnl2);
-	    pnl2.setLayout(null);
-	    
-	    JLabel lblCodigoDeControl = new JLabel("Ingresa el codigo de control del docente");
-	    lblCodigoDeControl.setFont(new Font("Tahoma", Font.PLAIN, 17));
-	    lblCodigoDeControl.setBounds(373, 0, 321, 25);
-	    pnl2.add(lblCodigoDeControl);
-
-	    textFieldNombre = new JTextField();
-	    textFieldNombre.setBounds(312, 351, 409, 19);
-	    panel.add(textFieldNombre);
-	    textFieldNombre.setColumns(10);
-	    
-	    JButton btnNewButton = new JButton("Consultar");
-	    btnNewButton.setBounds(470, 381, 89, 23);
-	    panel.add(btnNewButton);
-	    btnNewButton.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		    	if(textFieldNombre.getText().length()!=0) {
-		        getContentPane().removeAll();
-		        panelDocentes();
-		        getContentPane().revalidate();
-		        getContentPane().repaint();
-		    	}
-		    	else {
-		    		textFieldNombre.setBorder(new LineBorder(Color.red,2,true));
-		    	}
-		    }
-		});
-  
-	}
-	
-	public void consultarDoce() {
+	public void docenteEncontrado() {
 		menuDocentes();
 	    JPanel docenteCreado = new JPanel();
 	    docenteCreado.setBackground(new Color(255, 255, 255));
@@ -2702,7 +2781,7 @@ public class Ventana extends JFrame {
 					JOptionPane.showMessageDialog(null, "Consulta finalizada correctamente");
 					
 					getContentPane().removeAll();
-					panelDocentes();
+					panelDocentesConsultar();
 	                getContentPane().revalidate();
 	                getContentPane().repaint();
 				}
@@ -2742,7 +2821,7 @@ public class Ventana extends JFrame {
 	    lblNombre.setBounds(292, 182, 124, 28);
 	    docenteCreado.add(lblNombre);
 	    
-	    JLabel lblNombre_1 = new JLabel(textFieldNombre.getText());
+	    JLabel lblNombre_1 = new JLabel("");
 	    lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNombre_1.setBounds(446, 182, 124, 28);
 	    docenteCreado.add(lblNombre_1);
@@ -2752,7 +2831,7 @@ public class Ventana extends JFrame {
 	    lblApellidoP.setBounds(292, 220, 124, 28);
 	    docenteCreado.add(lblApellidoP);
 	    
-	    JLabel lblApellidoP_1 = new JLabel(textFieldApPaterno.getText());
+	    JLabel lblApellidoP_1 = new JLabel("");
 	    lblApellidoP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblApellidoP_1.setBounds(446, 220, 124, 28);
 	    docenteCreado.add(lblApellidoP_1);
@@ -2782,22 +2861,22 @@ public class Ventana extends JFrame {
 	    lblNacionalidad_1.setBounds(40, 100, 161, 28);
 	    panelInfoGeneral.add(lblNacionalidad_1);
 	    
-	    JLabel lblGenero_1 = new JLabel((String) comboBoxGeneros.getSelectedItem());
+	    JLabel lblGenero_1 = new JLabel("Masculino");
 	    lblGenero_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblGenero_1.setBounds(233, 20, 124, 28);
 	    panelInfoGeneral.add(lblGenero_1);
 	    
-	    JLabel lblFechaNacimiento = new JLabel((String)comboBoxDias.getSelectedItem()+"/"+(String)comboBoxMes.getSelectedItem()+"/"+(String)comboBoxAnio.getSelectedItem());
+	    JLabel lblFechaNacimiento = new JLabel("/ / /");
 	    lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblFechaNacimiento.setBounds(233, 60, 124, 28);
 	    panelInfoGeneral.add(lblFechaNacimiento);
 	    
-	    JLabel lblNacionalidad = new JLabel((String) comboBoxNacionalidad.getSelectedItem());
+	    JLabel lblNacionalidad = new JLabel("");
 	    lblNacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNacionalidad.setBounds(233, 100, 124, 28);
 	    panelInfoGeneral.add(lblNacionalidad);
 	    
-	    JLabel lblTelefono = new JLabel(textFieldTelefono.getText());
+	    JLabel lblTelefono = new JLabel("");
 	    lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblTelefono.setBounds(233, 140, 124, 28);
 	    panelInfoGeneral.add(lblTelefono);
@@ -2852,32 +2931,32 @@ public class Ventana extends JFrame {
 	    lblMatricula_1.setBounds(38, 309, 124, 28);
 	    PanelXD.add(lblMatricula_1);
 	    
-	    JLabel lblDomicilio = new JLabel(textFieldDomicilio.getText());
+	    JLabel lblDomicilio = new JLabel("");
 	    lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblDomicilio.setBounds(179, 61, 124, 28);
 	    PanelXD.add(lblDomicilio);
 	    
-	    JLabel lblCalles_1 = new JLabel(textField_2.getText());
+	    JLabel lblCalles_1 = new JLabel("");
 	    lblCalles_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCalles_1.setBounds(179, 100, 124, 28);
 	    PanelXD.add(lblCalles_1);
 	    
-	    JLabel lblCP_1 = new JLabel(textFieldCP.getText());
+	    JLabel lblCP_1 = new JLabel("");
 	    lblCP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCP_1.setBounds(179, 140, 124, 28);
 	    PanelXD.add(lblCP_1);
 	    
-	    JLabel lblNivelEducativo = new JLabel((String) comboBoxEscolaridad.getSelectedItem());
+	    JLabel lblNivelEducativo = new JLabel("");
 	    lblNivelEducativo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNivelEducativo.setBounds(172, 230, 124, 28);
 	    PanelXD.add(lblNivelEducativo);
 	    
-	    JLabel lblStatusActual = new JLabel((String) comboBoxStatus.getSelectedItem());
+	    JLabel lblStatusActual = new JLabel("");
 	    lblStatusActual.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblStatusActual.setBounds(172, 270, 124, 28);
 	    PanelXD.add(lblStatusActual);
 	    
-	    JLabel lblMatricula = new JLabel(textFieldMatricula.getText());
+	    JLabel lblMatricula =new JLabel("");
 	    lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblMatricula.setBounds(172, 309, 124, 28);
 	    PanelXD.add(lblMatricula);
@@ -2892,7 +2971,7 @@ public class Ventana extends JFrame {
 	    lblApellidoM.setBounds(292, 258, 124, 28);
 	    docenteCreado.add(lblApellidoM);
 	    
-	    JLabel lblApellidoM_1 = new JLabel(textFieldApMaterno.getText());
+	    JLabel lblApellidoM_1 = new JLabel("");
 	    lblApellidoM_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblApellidoM_1.setBounds(446, 258, 124, 28);
 	    docenteCreado.add(lblApellidoM_1);
@@ -2902,7 +2981,7 @@ public class Ventana extends JFrame {
 	    lblCorreo.setBounds(292, 296, 144, 28);
 	    docenteCreado.add(lblCorreo);
 	    
-	    JLabel lblCorreo_1 = new JLabel(textFieldCorreo.getText());
+	    JLabel lblCorreo_1 = new JLabel("");
 	    lblCorreo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCorreo_1.setBounds(446, 296, 124, 28);
 	    docenteCreado.add(lblCorreo_1);
@@ -2916,17 +2995,13 @@ public class Ventana extends JFrame {
 	    lblDatosAdicionales.setFont(new Font("Tahoma", Font.PLAIN, 18));
 	    lblDatosAdicionales.setBounds(665, 182, 262, 28);
 	    docenteCreado.add(lblDatosAdicionales);
-	    
-	    JButton btnTerminar = new JButton("Finalizar");
-	    btnTerminar.setBounds(785, 642, 219, 35);
-	    docenteCreado.add(btnTerminar);
-	    
+	 
 	    JLabel lblCurp = new JLabel("C.U.R.P");
 	    lblCurp.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCurp.setBounds(292, 334, 144, 28);
 	    docenteCreado.add(lblCurp);
 	    
-	    JLabel lblCurp_1 = new JLabel(textFieldCurp.getText());
+	    JLabel lblCurp_1 = new JLabel("");
 	    lblCurp_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCurp_1.setBounds(446, 334, 124, 28);
 	    docenteCreado.add(lblCurp_1);
@@ -3270,67 +3345,7 @@ public class Ventana extends JFrame {
 	    comboBoxStatus.setBounds(496, 628, 146, 21);
 	    crearDoce.add(comboBoxStatus);
 	    
-	    JButton btnCrearPerfil = new JButton("Crear Perfil");
-	    btnCrearPerfil.setBounds(882, 628, 124, 51);
-	    crearDoce.add(btnCrearPerfil);
-	    
-	    btnCrearPerfil.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				String nombre = textFieldNombre.getText();
-        		String apellidoP =textFieldApPaterno.getText();
-        		String apellidoM = textFieldApMaterno.getText();      	
-		    	
-		    	if(nombre.length()>0) {
-		    		textFieldNombre.setBorder(new LineBorder(Color.gray,1,true));
-		    	}
-		    	else {
-		    		textFieldNombre.setBorder(new LineBorder(Color.red,2,true));
-		    	}
-		    	if(apellidoP.length()>0) {
-		    		textFieldApPaterno.setBorder(new LineBorder(Color.gray,1,true));
-		    	}
-		    	else {
-		    		textFieldApPaterno.setBorder(new LineBorder(Color.red,2,true));
-		    	}
-		    	if(apellidoM.length()>0) {
-		    		textFieldApMaterno.setBorder(new LineBorder(Color.gray,1,true));
-		    	}
-		    	else {
-		    		textFieldApMaterno.setBorder(new LineBorder(Color.red,2,true));
-		    	}
-		    	
-		    	if(nombre.length()>0 && apellidoP.length()>0 && apellidoM.length()>0)
-		    	{
-		    		getContentPane().removeAll();
-			        docenteCreado();
-			        getContentPane().revalidate();
-			        getContentPane().repaint();
-		    	}
-		    
-			}
-	    	
-	    });
-	    
-	    JButton btnRegresar = new JButton("Regresar");
-	    btnRegresar.setBounds(732, 629, 124, 51);
-	    crearDoce.add(btnRegresar);
-	    
-	    btnRegresar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				getContentPane().removeAll();
-		        panelDocentes();
-		        getContentPane().revalidate();
-		        getContentPane().repaint();
-			}
-	    	
-	    });
-	    
+	
 	    textFieldNacimiento = new JTextField();
 	    textFieldNacimiento.setColumns(10);
 	    textFieldNacimiento.setBounds(243, 300, 399, 19);
@@ -3625,7 +3640,7 @@ public class Ventana extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				getContentPane().removeAll();
-				panelDocentes();
+				panelDocentesConsultar();
                 getContentPane().revalidate();
                 getContentPane().repaint();
 			}
@@ -3649,7 +3664,7 @@ public class Ventana extends JFrame {
 				JOptionPane.showMessageDialog(null, "Información actualizada correctamente");
 				
 				getContentPane().removeAll();
-				panelDocentes();
+				panelDocentesConsultar();
                 getContentPane().revalidate();
                 getContentPane().repaint();
 			}
@@ -3724,25 +3739,7 @@ public class Ventana extends JFrame {
 	    panel_2_1.setBackground(Color.GRAY);
 	    panel_2_1.setBounds(0, 489, 1003, 51);
 	    panel.add(panel_2_1);
-	    
-	    JButton btnFinalizar = new JButton("Finalizar");
-	    btnFinalizar.setBounds(877, 16, 100, 25);
-	    panel_2_1.add(btnFinalizar);
-	    
-	    btnFinalizar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				JOptionPane.showMessageDialog(null, "Información actualizada correctamente");
-				getContentPane().removeAll();
-		        panelDocentes();
-		        getContentPane().revalidate();
-		        getContentPane().repaint();
-			}
-	    	
-	    });
-	    
+  
 	    JLabel lblImgen = new JLabel("Imágen");
 	    lblImgen.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblImgen.setBounds(96, 244, 62, 19);
@@ -3896,6 +3893,7 @@ public class Ventana extends JFrame {
 				
 				getContentPane().removeAll();
 				panelDocentes();
+				textFieldMatricula.setText(null);
                 getContentPane().revalidate();
                 getContentPane().repaint();
 			}
@@ -4073,7 +4071,7 @@ public class Ventana extends JFrame {
 	    lblStatusActual.setBounds(172, 270, 124, 28);
 	    PanelXD.add(lblStatusActual);
 	    
-	    JLabel lblMatricula = new JLabel();
+	    JLabel lblMatricula = new JLabel(textFieldMatricula.getText());
 	    lblMatricula.setText("21324565");
 	    lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblMatricula.setBounds(172, 309, 124, 28);
@@ -4294,7 +4292,7 @@ public class Ventana extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Menu");
+		JMenu mnNewMenu = new JMenu("Acceso");
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem volverInicio = new JMenuItem("Volver a inicio");
@@ -4309,10 +4307,11 @@ public class Ventana extends JFrame {
             }
         });
 		
-		JMenuItem volverPanel = new JMenuItem("Volver al panel de docentes");
+		JMenuItem volverPanel = new JMenuItem("Volver al panel de alumnos");
 		mnNewMenu.add(volverPanel);
 		volverPanel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	
                 getContentPane().removeAll();
                 panelDocentes();
                 getContentPane().revalidate();
@@ -4333,12 +4332,13 @@ public class Ventana extends JFrame {
             }
         });
 		
+		
 		JMenu alumnos = new JMenu("Docentes");
 		menuBar.add(alumnos);
 		
-		JMenuItem descargaDoce = new JMenuItem("Descargar informacion\r\n");
-		alumnos.add(descargaDoce);
-		descargaDoce.addActionListener(new ActionListener() {
+		JMenuItem descargarDoce = new JMenuItem("Descargar informacion\r\n");
+		alumnos.add(descargarDoce);
+		descargarDoce.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 getContentPane().removeAll();
                 descargarDoce();
@@ -4352,22 +4352,13 @@ public class Ventana extends JFrame {
 		consultarDoce.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 getContentPane().removeAll();
-                consultarDoce();
+                docenteEncontrado();
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
         });
 		
-		JMenuItem crearDoce = new JMenuItem("Crear");
-		alumnos.add(crearDoce);
-		crearDoce.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                getContentPane().removeAll();
-                crearDoce();
-                getContentPane().revalidate();
-                getContentPane().repaint();
-            }
-        });
+
 		
 		JMenuItem editarDoce = new JMenuItem("Editar");
 		alumnos.add(editarDoce);
@@ -4390,7 +4381,7 @@ public class Ventana extends JFrame {
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
-        });
+        });	
 		
-	}
+}
 }
