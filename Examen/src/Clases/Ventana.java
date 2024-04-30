@@ -8,6 +8,8 @@ import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,6 +32,7 @@ import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.awt.SystemColor;
 
 
 public class Ventana extends JFrame {
@@ -43,6 +46,7 @@ public class Ventana extends JFrame {
 	private JTextField textFieldCurp;
 	private JTextField textFieldDomicilio;
 	private JTextField textField_2;
+	private JTextField textFieldTel;
 	private JTextField textFieldCorreo;
 	private JTextField textFieldTelefono;
 	private JTextField textFieldCP;
@@ -65,13 +69,14 @@ public class Ventana extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				
 			}
 		});
+		
 	}
-		
-
+	
 	public Ventana() {
-		
 		
 	    contentPane = new JPanel();
 	    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,9 +84,7 @@ public class Ventana extends JFrame {
 	    setSize(1080, 760);
 	    setLocationRelativeTo(null);
 	    
-	    
 	    probarComponentes();
-
 	}
 	
 	public void probarComponentes() {
@@ -92,12 +95,13 @@ public class Ventana extends JFrame {
  
     JPanel login = new JPanel();
     login.setLayout(null);
-    login.setBackground(new Color(64, 0, 128));
+    login.setBackground(new Color(47, 79, 79));
     
     JLabel loginDentro = new JLabel();
+    loginDentro.setBorder(new LineBorder(new Color(0, 0, 0), 2));
     loginDentro.setLocation(173, 131);
     loginDentro.setLayout(null);
-    loginDentro.setBackground(new Color(128, 0, 255));
+    loginDentro.setBackground(new Color(46, 139, 87));
     loginDentro.setSize(700,500);
     loginDentro.setOpaque(rootPaneCheckingEnabled);
     login.add(loginDentro);
@@ -109,7 +113,6 @@ public class Ventana extends JFrame {
     loginTag.setForeground(Color.white);
     login.add(loginTag);
     
-
     JLabel loginTag2 = new JLabel("Mi Cuenta",0);
     loginTag2.setSize(300, 80);
     loginTag2.setLocation(200, 10);
@@ -154,7 +157,6 @@ public class Ventana extends JFrame {
     recordarme.setFont(new Font("Arial Black", Font.ITALIC, 16));
     loginDentro.add(recordarme);
    
-
     // Botón de Acceder
     JButton botonAcceder = new JButton("Acceder");
     botonAcceder.setSize(150, 40);
@@ -193,16 +195,7 @@ public class Ventana extends JFrame {
     loginDentro.add(botonAcceder);
 
     getContentPane().add(login);
-    //prueba de gifs,obvio no usaremos estos
-    JLabel lblNewLabel = new JLabel("");
-    lblNewLabel.setIcon(new ImageIcon(Ventana.class.getResource("/Clases/pepe.gif")));
-    lblNewLabel.setBounds(932, 612, 122, 119);
-    login.add(lblNewLabel);
     
-    JLabel lblNewLabel_1 = new JLabel("");
-    lblNewLabel_1.setIcon(new ImageIcon(Ventana.class.getResource("/Clases/pepe.gif")));
-    lblNewLabel_1.setBounds(21, 612, 122, 119);
-    login.add(lblNewLabel_1);
     }
 
 	public void inicio() {
@@ -211,115 +204,208 @@ public class Ventana extends JFrame {
     	
     	JPanel inicio = new JPanel();
     	inicio .setLayout(null);
-    	inicio.setBackground(new Color(128, 0, 255));
-      
-        JLabel holaTag = new JLabel("Bienvenido!",0);
-        holaTag.setSize(560, 80);
-        holaTag.setLocation(243, 25);
-        holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
-        holaTag.setForeground(new Color(244, 145, 42));
-        holaTag.setBackground(Color.black);
-        inicio.add(holaTag);
+    	inicio.setBackground(new Color(255, 255, 255));
         
-
         getContentPane().add(inicio);
         
-        JButton docentes = new JButton("Docente");
-        docentes.setBounds(281, 251, 171, 171);
-        docentes.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        getContentPane().removeAll();
-		        panelDocentes();
-		        getContentPane().revalidate();
-		        getContentPane().repaint(); 
-		    }
-		});
-        inicio.add(docentes);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(47, 79, 79));
+        panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+        panel.setBounds(10, 28, 1046, 76);
+        inicio.add(panel);
+        panel.setLayout(null);
         
-        JButton alumnos = new JButton("Alumno");
-        alumnos.setBounds(602, 251, 171, 171);
+        JLabel holaTag = new JLabel("¡Bienvenido!",0);
+        holaTag.setBounds(225, 0, 560, 80);
+        panel.add(holaTag);
+        holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
+        holaTag.setForeground(new Color(255, 255, 255));
+        holaTag.setBackground(Color.black);
+          
+        JPanel panel_1 = new JPanel();
+        panel_1.setForeground(new Color(47, 79, 79));
+        panel_1.setBackground(new Color(245, 245, 220));
+        panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+        panel_1.setBounds(10, 128, 1046, 563);
+        inicio.add(panel_1);
+        panel_1.setLayout(null);
+          
+        JButton alumnos = new JButton();
+        alumnos.setBackground(new Color(211, 211, 211));
+        alumnos.setBorderPainted(false);
         alumnos.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        getContentPane().removeAll();
-		        panelAlumnos();
-		        getContentPane().revalidate();
-		        getContentPane().repaint(); 
-		    }
-		});
-        inicio.add(alumnos);
+      	public void actionPerformed(ActionEvent e) {
+      		getContentPane().removeAll();
+      		panelAlumnos();
+      		getContentPane().revalidate();
+      		getContentPane().repaint();
+      		
+      			}
+      		});
         
+      	alumnos.setBounds(558, 91, 373, 353);
+      	alumnos.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\estudiante.png"));
+      	panel_1.add(alumnos);
+      	getContentPane().add(inicio);
+      
+      	validate();
+          
+      	JButton docentes = new JButton();
+      	docentes.setBackground(new Color(211, 211, 211));
+      	docentes.setBorderPainted(false);
+  		docentes.addActionListener(new ActionListener() {
+  		public void actionPerformed(ActionEvent e) {
+  			getContentPane().removeAll();
+  			panelDocentes();
+  			getContentPane().revalidate();
+  			getContentPane().repaint();
+  			
+  				}
+  			});
+  		
+  		docentes.setBounds(117, 91, 373, 353);
+  		docentes.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\teacher.png"));
+  		panel_1.add(docentes);
+  		
+  		JLabel lblDocente = new JLabel("Docente");
+  		lblDocente.setBackground(new Color(0, 0, 128));
+  		lblDocente.setForeground(new Color(0, 0, 128));
+  		lblDocente.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
+  		lblDocente.setBounds(242, 454, 141, 40);
+  		panel_1.add(lblDocente);
+  		
+  		JLabel lblAlumno = new JLabel("Alumno");
+  		lblAlumno.setForeground(new Color(0, 0, 128));
+  		lblAlumno.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
+  		lblAlumno.setBounds(689, 454, 141, 40);
+  		panel_1.add(lblAlumno);
+  		getContentPane().add(inicio);
+  		
+  		validate();
     }
 	
 	public void panelDocentesConsultar() {
 
-		
 		menuDocentes();
     	
     	JPanel inicio = new JPanel();
     	inicio .setLayout(null);
-    	inicio.setBackground(new Color(255, 255, 255));
+    	inicio.setBackground(new Color(47, 79, 79));
       
-        JLabel holaTag = new JLabel("Docente Encontrado!",0);
+        JLabel holaTag = new JLabel("!Docente Encontrado!",0);
         holaTag.setSize(810, 80);
         holaTag.setLocation(124, 26);
         holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
-        holaTag.setForeground(new Color(128, 255, 0));
-        holaTag.setBackground(Color.black);
+        holaTag.setForeground(new Color(255, 255, 255));
+        holaTag.setBackground(new Color(255, 255, 255));
         inicio.add(holaTag);
-        
-
+       
         getContentPane().add(inicio);
         
-        JButton descargarAlu = new JButton("Descargar Informacion");
-        descargarAlu.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        descargarDoce();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        descargarAlu.setBounds(264, 150, 200, 200);
-        inicio.add(descargarAlu);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(46, 139, 87));
+        panel.setBounds(10, 10, 1046, 114);
+        inicio.add(panel);
+        panel.setLayout(null);
         
-        JButton consultarAlu = new JButton("Consultar");
-        consultarAlu.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        docenteEncontrado();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        consultarAlu.setBounds(582, 150, 200, 200);
-        inicio.add(consultarAlu);
-   
-        JButton editarDoce = new JButton("Editar");
-        editarDoce.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        editarDoce();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        editarDoce.setBounds(264, 400, 200, 200);
-        inicio.add(editarDoce);
+        JPanel panel_1 = new JPanel();
+        panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+        panel_1.setBackground(new Color(255, 255, 255));
+        panel_1.setBounds(10, 134, 1046, 557);
+        inicio.add(panel_1);
+        panel_1.setLayout(null);
         
-        JButton eliminarAlu = new JButton("Eliminar");
-        eliminarAlu.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        eliminarDoce();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        eliminarAlu.setBounds(582, 400, 200, 200);
-        inicio.add(eliminarAlu);
+        	JButton editarDoce = new JButton();
+        	editarDoce.setContentAreaFilled(false);
+        	editarDoce.setBorderPainted(false);
+        	editarDoce.addActionListener(new ActionListener() {
+        		public void actionPerformed(ActionEvent e) {
+        			getContentPane().removeAll();
+        			editarDoce();
+        			getContentPane().revalidate();
+        			getContentPane().repaint();
+        		}
+        	});
+        	editarDoce.setBounds(255, 303, 200, 200);
+        	editarDoce.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\editar.png"));
+        	panel_1.add(editarDoce);
+        	getContentPane().add(inicio);
         
-        
-		
+        	validate();
+             
+             JButton eliminarDoce = new JButton();
+             eliminarDoce.setContentAreaFilled(false);
+             eliminarDoce.setBorderPainted(false);
+             eliminarDoce.addActionListener(new ActionListener() {
+         	    public void actionPerformed(ActionEvent e) {
+         	        getContentPane().removeAll();
+         	        eliminarDoce();
+         	        getContentPane().revalidate();
+         	        getContentPane().repaint();
+         	    }
+         	});
+             eliminarDoce.setBounds(571, 303, 200, 200);
+             eliminarDoce.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\delete.png"));
+             panel_1.add(eliminarDoce);
+             getContentPane().add(inicio);
+             
+             validate();
+             
+             JButton consultarDoce = new JButton();
+             consultarDoce.setContentAreaFilled(false);
+             consultarDoce.setBorderPainted(false);
+             consultarDoce.addActionListener(new ActionListener() {
+         	    public void actionPerformed(ActionEvent e) {
+         	        getContentPane().removeAll();
+         	        docenteEncontrado();
+         	        getContentPane().revalidate();
+         	        getContentPane().repaint();
+         	    }
+         	});
+             consultarDoce.setBounds(557, 71, 200, 200);
+             consultarDoce.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\user-search.png"));
+             panel_1.add(consultarDoce);
+             getContentPane().add(inicio);
+             
+             validate();
+             
+             JButton descargarDoce = new JButton();
+             descargarDoce.setContentAreaFilled(false);
+             descargarDoce.setBounds(255, 58, 200, 200);
+             panel_1.add(descargarDoce);
+             descargarDoce.addActionListener(new ActionListener() {
+         	    public void actionPerformed(ActionEvent e) {
+         	        getContentPane().removeAll();
+         	        descargarDoce();
+         	        getContentPane().revalidate();
+         	        getContentPane().repaint();
+         	    }
+         	});
+             descargarDoce.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\Download.png"));
+             
+             JLabel lblDescargarInfo = new JLabel("Decargar Información");
+             lblDescargarInfo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+             lblDescargarInfo.setBounds(265, 227, 200, 29);
+             panel_1.add(lblDescargarInfo);
+             
+             JLabel lblEditarInfo = new JLabel("Editar Información");
+             lblEditarInfo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+             lblEditarInfo.setBounds(274, 469, 167, 21);
+             panel_1.add(lblEditarInfo);
+             
+             JLabel lblEliminarDoce = new JLabel("Eliminar Docente");
+             lblEliminarDoce.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+             lblEliminarDoce.setBounds(585, 469, 167, 21);
+             panel_1.add(lblEliminarDoce);
+             
+             JLabel lblConsultarInfo = new JLabel("Consultar Información");
+             lblConsultarInfo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+             lblConsultarInfo.setBounds(557, 235, 200, 13);
+             panel_1.add(lblConsultarInfo);
+             getContentPane().add(inicio);
+             
+             validate();
+            
 	}
 	
 	public void panelAlumnos() {
@@ -327,13 +413,13 @@ public class Ventana extends JFrame {
 	    
 	    JPanel inicio = new JPanel();
 	    inicio.setLayout(null);
-	    inicio.setBackground(new Color(255, 255, 255));
+	    inicio.setBackground(new Color(47, 79, 79));
 	  
-	    JLabel holaTag = new JLabel("Seleccione qué desea hacer!");
+	    JLabel holaTag = new JLabel("Seleccione qué desea hacer");
 	    holaTag.setSize(810, 80);
-	    holaTag.setLocation(124, 26);
+	    holaTag.setLocation(149, 15);
 	    holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
-	    holaTag.setForeground(new Color(244, 145, 42));
+	    holaTag.setForeground(new Color(255, 255, 255));
 	    holaTag.setBackground(Color.black);
 	    inicio.add(holaTag);
 
@@ -381,75 +467,127 @@ public class Ventana extends JFrame {
 	}
 
 	public void panelAlumnosConsultar() {
-
 		
 		menuAlumnos();
     	
     	JPanel inicio = new JPanel();
     	inicio .setLayout(null);
-    	inicio.setBackground(new Color(255, 255, 255));
+    	inicio.setBackground(new Color(47, 79, 79));
       
-        JLabel holaTag = new JLabel("Alumno Encontrado!",0);
+        JLabel holaTag = new JLabel("!Alumno Encontrado!",0);
         holaTag.setSize(810, 80);
         holaTag.setLocation(124, 26);
         holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
-        holaTag.setForeground(new Color(128, 255, 0));
-        holaTag.setBackground(Color.black);
+        holaTag.setForeground(new Color(255, 255, 255));
+        holaTag.setBackground(new Color(154, 205, 50));
         inicio.add(holaTag);
-        
-
+       
         getContentPane().add(inicio);
         
-        JButton descargarAlu = new JButton("Descargar Informacion");
-        descargarAlu.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        descargarAlu();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        descargarAlu.setBounds(264, 150, 200, 200);
-        inicio.add(descargarAlu);
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(46, 139, 87));
+        panel.setBounds(10, 10, 1046, 114);
+        inicio.add(panel);
+        panel.setLayout(null);
         
-        JButton consultarAlu = new JButton("Consultar");
-        consultarAlu.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        alumnoEncontrado();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        consultarAlu.setBounds(582, 150, 200, 200);
-        inicio.add(consultarAlu);
-   
-        JButton editarAlu = new JButton("Editar");
-        editarAlu.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        editarAlu();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        editarAlu.setBounds(264, 400, 200, 200);
-        inicio.add(editarAlu);
+        JPanel panel_1 = new JPanel();
+        panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+        panel_1.setBackground(new Color(245, 245, 245));
+        panel_1.setBounds(10, 134, 1046, 557);
+        inicio.add(panel_1);
+        panel_1.setLayout(null);
         
-        JButton eliminarAlu = new JButton("Eliminar");
-        eliminarAlu.addActionListener(new ActionListener() {
-    	    public void actionPerformed(ActionEvent e) {
-    	        getContentPane().removeAll();
-    	        eliminarAlu();
-    	        getContentPane().revalidate();
-    	        getContentPane().repaint();
-    	    }
-    	});
-        eliminarAlu.setBounds(582, 400, 200, 200);
-        inicio.add(eliminarAlu);
+        	JButton editarAlu = new JButton();
+        	editarAlu.setContentAreaFilled(false);
+        	editarAlu.setBorderPainted(false);
+        	editarAlu.addActionListener(new ActionListener() {
+        		public void actionPerformed(ActionEvent e) {
+        			getContentPane().removeAll();
+        			editarAlu();
+        			getContentPane().revalidate();
+        			getContentPane().repaint();
+        		}
+        	});
+        	editarAlu.setBounds(255, 303, 200, 200);
+        	editarAlu.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\editar.png"));
+        	panel_1.add(editarAlu);
+        	getContentPane().add(inicio);
         
-        
-		
+        	validate();
+             
+             JButton eliminarAlu = new JButton();
+             eliminarAlu.setContentAreaFilled(false);
+             eliminarAlu.setBorderPainted(false);
+             eliminarAlu.addActionListener(new ActionListener() {
+         	    public void actionPerformed(ActionEvent e) {
+         	        getContentPane().removeAll();
+         	        eliminarAlu();
+         	        getContentPane().revalidate();
+         	        getContentPane().repaint();
+         	    }
+         	});
+             eliminarAlu.setBounds(571, 303, 200, 200);
+             eliminarAlu.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\delete.png"));
+             panel_1.add(eliminarAlu);
+             getContentPane().add(inicio);
+             
+             validate();
+             
+             JButton consultarAlu = new JButton();
+             consultarAlu.setContentAreaFilled(false);
+             consultarAlu.setBorderPainted(false);
+             consultarAlu.addActionListener(new ActionListener() {
+         	    public void actionPerformed(ActionEvent e) {
+         	        getContentPane().removeAll();
+         	        alumnoEncontrado();
+         	        getContentPane().revalidate();
+         	        getContentPane().repaint();
+         	    }
+         	});
+             consultarAlu.setBounds(557, 71, 200, 200);
+             consultarAlu.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\user-search.png"));
+             panel_1.add(consultarAlu);
+             getContentPane().add(inicio);
+             
+             validate();
+             
+             JButton descargarAlu = new JButton();
+             descargarAlu.setBounds(255, 58, 200, 200);
+             panel_1.add(descargarAlu);
+             descargarAlu.setBorderPainted(false);
+             descargarAlu.setContentAreaFilled(false);
+             descargarAlu.addActionListener(new ActionListener() {
+         	    public void actionPerformed(ActionEvent e) {
+         	        getContentPane().removeAll();
+         	        descargarAlu();
+         	        getContentPane().revalidate();
+         	        getContentPane().repaint();
+         	    }
+         	});
+             descargarAlu.setIcon(new ImageIcon("C:\\Users\\felix\\eclipse-workspace\\Examen\\src\\Clases\\Download.png"));
+             
+             JLabel lblDescargarInfo = new JLabel("Decargar Información");
+             lblDescargarInfo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+             lblDescargarInfo.setBounds(265, 227, 200, 29);
+             panel_1.add(lblDescargarInfo);
+             
+             JLabel lblEditarInfo = new JLabel("Editar Información");
+             lblEditarInfo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+             lblEditarInfo.setBounds(274, 469, 167, 21);
+             panel_1.add(lblEditarInfo);
+             
+             JLabel lblEliminarAlu = new JLabel("Eliminar Alumno");
+             lblEliminarAlu.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+             lblEliminarAlu.setBounds(585, 469, 167, 21);
+             panel_1.add(lblEliminarAlu);
+             
+             JLabel lblConsultarInfo = new JLabel("Consultar Información");
+             lblConsultarInfo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
+             lblConsultarInfo.setBounds(557, 235, 200, 13);
+             panel_1.add(lblConsultarInfo);
+             getContentPane().add(inicio);
+             
+             validate();
 	}
 	
 	public void panelDocentes() {
@@ -457,13 +595,13 @@ public class Ventana extends JFrame {
 	    
 	    JPanel inicio = new JPanel();
 	    inicio.setLayout(null);
-	    inicio.setBackground(new Color(255, 255, 255));
+	    inicio.setBackground(new Color(47, 79, 79));
 	  
-	    JLabel holaTag = new JLabel("Seleccione qué desea hacer!");
+	    JLabel holaTag = new JLabel("Seleccione qué desea hacer");
 	    holaTag.setSize(810, 80);
-	    holaTag.setLocation(124, 26);
+	    holaTag.setLocation(153, 15);
 	    holaTag.setFont(new Font("Arial Black", Font.ITALIC, 48));
-	    holaTag.setForeground(new Color(244, 145, 42));
+	    holaTag.setForeground(new Color(255, 255, 255));
 	    holaTag.setBackground(Color.black);
 	    inicio.add(holaTag);
 
@@ -518,7 +656,7 @@ public class Ventana extends JFrame {
 	    descargarAlu.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(128, 255, 128));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    descargarAlu.add(panel_1);
 	    panel_1.setLayout(null);
@@ -534,6 +672,7 @@ public class Ventana extends JFrame {
 		panel_1.add(descargarInformacion);
 		
 		 JButton btnPanelDocente = new JButton();
+		 btnPanelDocente.setForeground(new Color(255, 255, 255));
 		    btnPanelDocente.setBorderPainted(false);
 		    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 		    btnPanelDocente.setText("Panel Alumno");
@@ -556,6 +695,7 @@ public class Ventana extends JFrame {
 		    });
 		    
 		    JButton btnDescargarDocente = new JButton();
+		    btnDescargarDocente.setForeground(new Color(255, 255, 255));
 		    btnDescargarDocente.setHorizontalAlignment(SwingConstants.RIGHT);
 		    btnDescargarDocente.setText("Descargar Información");
 		    btnDescargarDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
@@ -596,7 +736,7 @@ public class Ventana extends JFrame {
 	    JLabel Omar = new JLabel();
 	    Omar.setBounds(10, 10, 183, 170);
 	    panel_3.add(Omar);
-		Omar.setIcon(new ImageIcon(getClass().getResource("Omar (1).png")));
+		Omar.setIcon(new ImageIcon(getClass().getResource("Sebastian(1).png")));
 	    
 	    JLabel lblNombre = new JLabel("Nombre:");
 	    lblNombre.setForeground(Color.BLACK);
@@ -604,7 +744,7 @@ public class Ventana extends JFrame {
 	    lblNombre.setBounds(288, 65, 75, 28);
 	    panel_2.add(lblNombre);
 	    
-	    JLabel lblNombre_1 = new JLabel("Jose Alberto");
+	    JLabel lblNombre_1 = new JLabel("Omar Mario");
 	    lblNombre_1.setForeground(Color.DARK_GRAY);
 	    lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNombre_1.setBounds(379, 65, 124, 28);
@@ -615,7 +755,7 @@ public class Ventana extends JFrame {
 	    lblApellidos.setBounds(288, 103, 81, 28);
 	    panel_2.add(lblApellidos);
 	    
-	    JLabel lblApellidos1 = new JLabel("Martinez Pereira");
+	    JLabel lblApellidos1 = new JLabel("Martinez Maromas");
 	    lblApellidos1.setForeground(Color.DARK_GRAY);
 	    lblApellidos1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblApellidos1.setBounds(379, 103, 124, 28);
@@ -648,7 +788,7 @@ public class Ventana extends JFrame {
 	    lblCurp_2.setBounds(734, 141, 63, 28);
 	    panel_2.add(lblCurp_2);
 	    
-	    JLabel lblCurpText = new JLabel("JOSB850715HDFNZB02");
+	    JLabel lblCurpText = new JLabel("GUFO2019ALF1231");
 	    lblCurpText.setForeground(Color.DARK_GRAY);
 	    lblCurpText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCurpText.setBounds(807, 141, 173, 28);
@@ -659,7 +799,7 @@ public class Ventana extends JFrame {
 	    lblFechaNacimiento.setBounds(288, 179, 163, 28);
 	    panel_2.add(lblFechaNacimiento);
 	    
-	    JLabel lblNacimiento = new JLabel("12/07/2004");
+	    JLabel lblNacimiento = new JLabel("22/10/2004");
 	    lblNacimiento.setForeground(Color.DARK_GRAY);
 	    lblNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNacimiento.setBounds(472, 179, 87, 28);
@@ -681,7 +821,7 @@ public class Ventana extends JFrame {
 	    lblCorreo.setBounds(41, 303, 150, 28);
 	    panel_2.add(lblCorreo);
 	    
-	    JLabel lblCorreo_1 = new JLabel("elprimo1985@gmail.com");
+	    JLabel lblCorreo_1 = new JLabel("julo24@gmail.com");
 	    lblCorreo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCorreo_1.setBounds(242, 303, 200, 28);
 	    panel_2.add(lblCorreo_1);
@@ -691,7 +831,7 @@ public class Ventana extends JFrame {
 	    lblTelfono.setBounds(41, 341, 151, 28);
 	    panel_2.add(lblTelfono);
 	    
-	    JLabel lblTelefono_1 = new JLabel("+52 612 114 8477");
+	    JLabel lblTelefono_1 = new JLabel("612 149 1671");
 	    lblTelefono_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblTelefono_1.setBounds(242, 341, 124, 28);
 	    panel_2.add(lblTelefono_1);
@@ -701,7 +841,7 @@ public class Ventana extends JFrame {
 	    lblDomicilio.setBounds(41, 379, 151, 28);
 	    panel_2.add(lblDomicilio);
 	    
-	    JLabel lblDomicilio_1 = new JLabel("Avenida BuenaVista, 123 ");
+	    JLabel lblDomicilio_1 = new JLabel("Avenida Culebra, 230");
 	    lblDomicilio_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblDomicilio_1.setBounds(242, 379, 180, 28);
 	    panel_2.add(lblDomicilio_1);
@@ -711,7 +851,7 @@ public class Ventana extends JFrame {
 	    lblCdigoPostal.setBounds(41, 417, 151, 28);
 	    panel_2.add(lblCdigoPostal);
 	    
-	    JLabel lblCodigoPostal_1 = new JLabel("12345");
+	    JLabel lblCodigoPostal_1 = new JLabel("23089");
 	    lblCodigoPostal_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCodigoPostal_1.setBounds(242, 417, 124, 28);
 	    panel_2.add(lblCodigoPostal_1);
@@ -794,16 +934,15 @@ public class Ventana extends JFrame {
 
 	public void consultarAlu() {
 		
-	
-		
 		menuInicio();
 	    JPanel crearAlumno = new JPanel();
-	    crearAlumno.setBackground(new Color(255, 255, 255));
+	    crearAlumno.setBackground(new Color(47, 79, 79));
 	    getContentPane().add(crearAlumno);
 	    crearAlumno.setLayout(null);
  
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(128, 255, 128));
+	    panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+	    panel_1.setBackground(new Color(46, 139, 87));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    crearAlumno.add(panel_1);
 	    panel_1.setLayout(null);
@@ -812,33 +951,15 @@ public class Ventana extends JFrame {
 	    docenteIcono.setBounds(10, 0, 128, 128);
 	    panel_1.add(docenteIcono);
 	    docenteIcono.setIcon(new ImageIcon(getClass().getResource("iconoAlumno.png")));
-	
-	    JButton btnPanelAlumno = new JButton();
-	    btnPanelAlumno.setBorderPainted(false);
-	    btnPanelAlumno.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
-	    btnPanelAlumno.setOpaque(false);
-	    btnPanelAlumno.setText("Panel Alumno");
-	    btnPanelAlumno.setBackground(new Color(250, 128, 114));
-	    btnPanelAlumno.setBounds(138, 35, 293, 58);
-	    panel_1.add(btnPanelAlumno);
 	    
-	    
-	    
-	    btnPanelAlumno.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				getContentPane().removeAll();
-				panelAlumnos();
-                getContentPane().revalidate();
-                getContentPane().repaint();
-			}
-	    	
-	    });
+	    JLabel lblNewLabel = new JLabel("Acceso a panel");
+	    lblNewLabel.setForeground(new Color(255, 255, 255));
+	    lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 40));
+	    lblNewLabel.setBounds(148, 41, 393, 47);
+	    panel_1.add(lblNewLabel);
 
 	    JPanel pnlDatosBasicos = new JPanel();
-	    pnlDatosBasicos.setBounds(0, 312, 1064, 28);
+	    pnlDatosBasicos.setBounds(10, 312, 1046, 28);
 	    crearAlumno.add(pnlDatosBasicos);
 	    pnlDatosBasicos.setLayout(null);
 	    
@@ -852,22 +973,24 @@ public class Ventana extends JFrame {
 	    crearAlumno.add(textFieldCodigo);
 	    textFieldCodigo.setColumns(10);
 	    
-	    
-	    
 	    JButton btnNewButton = new JButton("Consultar");
         btnNewButton.setBounds(470, 381, 89, 23);
         crearAlumno.add(btnNewButton);
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+        panel.setBackground(new Color(245, 255, 250));
+        panel.setBounds(10, 137, 1046, 554);
+        crearAlumno.add(panel);
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(textFieldCodigo.getText().length() != 0) {
                     btnNewButton.setEnabled(false);
                     
-                   //de aqui pa abajo puedes copiarlo en donde quieras una barra, el Thread controla el tiempo que tarda en cargar
                     progressBar = new JProgressBar();
                     progressBar.setIndeterminate(true);
                     progressBar.setBounds(360, 420, 310, 30);
                     crearAlumno.add(progressBar);
-                    
                     
                     new Thread(() -> {
                         
@@ -876,15 +999,13 @@ public class Ventana extends JFrame {
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
-
-                       
+                        
                         SwingUtilities.invokeLater(() -> {
                             crearAlumno.remove(progressBar);
                             btnNewButton.setEnabled(true);
                             getContentPane().revalidate();
                             getContentPane().repaint();
 
-                           
                             getContentPane().removeAll();
                             panelAlumnosConsultar();
                             getContentPane().revalidate();
@@ -908,7 +1029,7 @@ public class Ventana extends JFrame {
 	    crearAlu.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(128, 255, 128));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    crearAlu.add(panel_1);
 	    panel_1.setLayout(null);
@@ -924,12 +1045,14 @@ public class Ventana extends JFrame {
 		panel_1.add(registro);
 		
 		JButton btnPanelAlumno = new JButton();
+		btnPanelAlumno.setHorizontalAlignment(SwingConstants.LEFT);
+		btnPanelAlumno.setForeground(new Color(255, 255, 255));
 	    btnPanelAlumno.setBorderPainted(false);
 	    btnPanelAlumno.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 	    btnPanelAlumno.setOpaque(false);
 	    btnPanelAlumno.setText("Panel Alumno");
-	    btnPanelAlumno.setBackground(new Color(250, 128, 114));
-	    btnPanelAlumno.setBounds(138, 35, 293, 58);
+	    btnPanelAlumno.setBackground(new Color(255, 255, 255));
+	    btnPanelAlumno.setBounds(123, 35, 293, 58);
 	    panel_1.add(btnPanelAlumno);
 	    
 	    btnPanelAlumno.addActionListener(new ActionListener() {
@@ -946,6 +1069,7 @@ public class Ventana extends JFrame {
 	    });
 	    
 	    JButton btnCrearDocente = new JButton();
+	    btnCrearDocente.setForeground(new Color(255, 255, 255));
 	    btnCrearDocente.setHorizontalAlignment(SwingConstants.RIGHT);
 	    btnCrearDocente.setText("Crear Alumno");
 	    btnCrearDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
@@ -1185,6 +1309,17 @@ public class Ventana extends JFrame {
 	    textFieldTelefono = new JTextField();
 	    textFieldTelefono.setColumns(10);
 	    textFieldTelefono.setBounds(397, 418, 245, 19);
+	    textFieldTelefono.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e) 
+			{
+				char character = e.getKeyChar();
+				if(!Character.isDigit(character)|| textFieldTelefono.getText().length()>=10)
+				{
+					e.consume();
+				}
+			}
+		});
 	    crearAlu.add(textFieldTelefono);
 	    
 	    JPanel pnlEscolaridad = new JPanel();
@@ -1205,6 +1340,17 @@ public class Ventana extends JFrame {
 	    textFieldCP = new JTextField();
 	    textFieldCP.setColumns(10);
 	    textFieldCP.setBounds(243, 563, 399, 19);
+	    textFieldCP.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e) 
+			{
+				char character = e.getKeyChar();
+				if(!Character.isDigit(character)|| textFieldCP.getText().length()>=5)
+				{
+					e.consume();
+				}
+			}
+		});
 	    crearAlu.add(textFieldCP);
 	    
 	    JLabel lblNivelEducativo = new JLabel("Nivel Educativo");
@@ -1254,7 +1400,7 @@ public class Ventana extends JFrame {
 	    alumnoCreado.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(128, 255, 128));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    alumnoCreado.add(panel_1);
 	    panel_1.setLayout(null);
@@ -1265,12 +1411,14 @@ public class Ventana extends JFrame {
 	    alumnoIcono.setIcon(new ImageIcon(getClass().getResource("iconoAlumno.png")));
 	   
 		JButton btnPanelAlumno = new JButton();
+		btnPanelAlumno.setHorizontalAlignment(SwingConstants.LEFT);
+		btnPanelAlumno.setForeground(new Color(255, 255, 255));
 		btnPanelAlumno.setBorderPainted(false);
 		btnPanelAlumno.setOpaque(false);
 		btnPanelAlumno.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
-		btnPanelAlumno.setText("Panel Alumno");
-		btnPanelAlumno.setBackground(new Color(250, 128, 114));
-		btnPanelAlumno.setBounds(138, 35, 293, 58);
+		btnPanelAlumno.setText("Selección de alumno");
+		btnPanelAlumno.setBackground(new Color(255, 255, 255));
+		btnPanelAlumno.setBounds(131, 34, 453, 58);
 	    panel_1.add(btnPanelAlumno);
 	    
 	    btnPanelAlumno.addActionListener(new ActionListener() {
@@ -1294,7 +1442,7 @@ public class Ventana extends JFrame {
 	    JLabel Omar = new JLabel();
 	    Omar.setBounds(0, 4, 180, 175);
 	    panelFoto.add(Omar);
-		Omar.setIcon(new ImageIcon(getClass().getResource("Omar (1).png")));
+		Omar.setIcon(new ImageIcon(getClass().getResource("Sebastian(1).png")));
 	    
 	    JLabel lblNombre = new JLabel("Nombre:");
 	    lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -1515,7 +1663,7 @@ public class Ventana extends JFrame {
 	    consultarAlumno.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(128, 255, 128));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    consultarAlumno.add(panel_1);
 	    panel_1.setLayout(null);
@@ -1531,6 +1679,7 @@ public class Ventana extends JFrame {
 		panel_1.add(finConsulta);
 		
 		 JButton btnPanelDocente = new JButton();
+		 btnPanelDocente.setForeground(new Color(255, 255, 255));
 		    btnPanelDocente.setBorderPainted(false);
 		    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 		    btnPanelDocente.setOpaque(false);
@@ -1553,6 +1702,7 @@ public class Ventana extends JFrame {
 		    });
 		    
 		    JButton btnFinalizarDocente = new JButton();
+		    btnFinalizarDocente.setForeground(new Color(255, 255, 255));
 		    btnFinalizarDocente.setHorizontalAlignment(SwingConstants.RIGHT);
 		    btnFinalizarDocente.setText("Finalizar Consulta");
 		    btnFinalizarDocente.setOpaque(false);
@@ -1583,7 +1733,7 @@ public class Ventana extends JFrame {
 	    
 	    JLabel foto = new JLabel();
 	    panelFoto.add(foto);
-	    foto.setIcon(new ImageIcon(getClass().getResource("Omar (1).png")));
+	    foto.setIcon(new ImageIcon(getClass().getResource("Sebastian(1).png")));
 		
 		JLabel infoGral = new JLabel();
 	    infoGral.setBounds(59, 398, 30, 30);
@@ -1798,24 +1948,24 @@ public class Ventana extends JFrame {
 
 	public void editarAlu() {
 		menuAlumnos();
-	    JPanel editarAlu = new JPanel();
-	    editarAlu.setBackground(Color.WHITE);
-	    getContentPane().add(editarAlu);
-	    editarAlu.setLayout(null);
+	    JPanel editarDoce = new JPanel();
+	    editarDoce.setBackground(Color.WHITE);
+	    getContentPane().add(editarDoce);
+	    editarDoce.setLayout(null);
 	   
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(128, 255, 128));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
-	    editarAlu.add(panel_1);
+	    editarDoce.add(panel_1);
 	    panel_1.setLayout(null);
 	    
 	    JButton btnPanelAlumno = new JButton();
+	    btnPanelAlumno.setForeground(new Color(255, 255, 255));
 	    btnPanelAlumno.setBorderPainted(false);
 	    btnPanelAlumno.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
-	    btnPanelAlumno.setOpaque(false);
 	    btnPanelAlumno.setText("Panel Alumno");
-	    btnPanelAlumno.setBackground(new Color(250, 128, 114));
-	    btnPanelAlumno.setBounds(114, 35, 293, 58);
+	    btnPanelAlumno.setBackground(new Color(47, 79, 79));
+	    btnPanelAlumno.setBounds(138, 35, 356, 58);
 	    panel_1.add(btnPanelAlumno);
 	    
 	    btnPanelAlumno.addActionListener(new ActionListener() {
@@ -1832,12 +1982,12 @@ public class Ventana extends JFrame {
 	    });
 	    
 	    JButton btnEditarAlumno = new JButton();
+	    btnEditarAlumno.setForeground(new Color(255, 255, 255));
 	    btnEditarAlumno.setHorizontalAlignment(SwingConstants.RIGHT);
 	    btnEditarAlumno.setText("Editar Alumno");
-	    btnEditarAlumno.setOpaque(false);
 	    btnEditarAlumno.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 	    btnEditarAlumno.setBorderPainted(false);
-	    btnEditarAlumno.setBackground(new Color(250, 128, 114));
+	    btnEditarAlumno.setBackground(new Color(47, 79, 79));
 	    btnEditarAlumno.setBounds(543, 35, 365, 58);
 	    panel_1.add(btnEditarAlumno);
 	    
@@ -1868,7 +2018,7 @@ public class Ventana extends JFrame {
 	   
 	    JPanel panel = new JPanel();
 	    panel.setBounds(30, 145, 1003, 540);
-	    editarAlu.add(panel);
+	    editarDoce.add(panel);
 	    panel.setLayout(null);
 	    
 	    JPanel panel_2 = new JPanel();
@@ -1924,7 +2074,7 @@ public class Ventana extends JFrame {
 	    panel_2_1.setBackground(Color.GRAY);
 	    panel_2_1.setBounds(0, 489, 1003, 51);
 	    panel.add(panel_2_1);
-	    
+  
 	    JLabel lblImgen = new JLabel("Imágen");
 	    lblImgen.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblImgen.setBounds(96, 244, 62, 19);
@@ -1975,27 +2125,52 @@ public class Ventana extends JFrame {
 	    lblCP.setBounds(521, 163, 94, 19);
 	    panel.add(lblCP);
 	    
-	    JTextField textFieldCp = new JTextField();
-	    textFieldCp.setColumns(10);
-	    textFieldCp.setBounds(628, 163, 282, 19);
-	    panel.add(textFieldCp);
+	    textFieldCP = new JTextField();
+	    textFieldCP.setColumns(10);
+	    textFieldCP.setBounds(628, 163, 282, 19);
+	    textFieldCP.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e) 
+			{
+				char character = e.getKeyChar();
+				if(!Character.isDigit(character)|| textFieldCP.getText().length()>=5)
+				{
+					e.consume();
+				}
+			}
+		});
+	    panel.add(textFieldCP);
 	    
 	    JLabel lblTelefono = new JLabel("Teléfono:");
 	    lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblTelefono.setBounds(549, 204, 68, 19);
 	    panel.add(lblTelefono);
 	    
-	    JTextField textFieldTel = new JTextField();
+	    textFieldTel = new JTextField();
 	    textFieldTel.setColumns(10);
 	    textFieldTel.setBounds(628, 204, 282, 19);
+	    
+	    textFieldTel.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e) 
+			{
+				char character = e.getKeyChar();
+				if(!Character.isDigit(character)|| textFieldTel.getText().length()>=10)
+				{
+					e.consume();
+				}
+			}
+		});
+	    
 	    panel.add(textFieldTel);
+	    
 	    
 	    JLabel lblNivelEducativo_2 = new JLabel("Nivel educativo:");
 	    lblNivelEducativo_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNivelEducativo_2.setBounds(509, 244, 109, 19);
 	    panel.add(lblNivelEducativo_2);
 	    
-	    String escolaridad[] = {"Primaria","Secundaria","Preparatoria"};
+	    String escolaridad[] = {"Licenciatura","Ingenieria","Maestria","Doctorado"};
 	    
 	    JComboBox comboBoxNvlEdu = new JComboBox(escolaridad);
 	    comboBoxNvlEdu.setBounds(628, 244, 282, 21);
@@ -2023,7 +2198,6 @@ public class Ventana extends JFrame {
 	    lblCargarFoto.setBounds(178, 384, 114, 28);
 	    panel.add(lblCargarFoto);
 	    
-	    
 	}
 	
 	public void eliminarAlu() {
@@ -2034,12 +2208,13 @@ public class Ventana extends JFrame {
 	    eliminarAlumno.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(128, 255, 128));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    eliminarAlumno.add(panel_1);
 	    panel_1.setLayout(null);
 	    
 	    JButton btnPanelAlumno = new JButton();
+	    btnPanelAlumno.setForeground(new Color(255, 255, 255));
 	    btnPanelAlumno.setBorderPainted(false);
 	    btnPanelAlumno.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 	    btnPanelAlumno.setOpaque(false);
@@ -2062,6 +2237,7 @@ public class Ventana extends JFrame {
 	    });
 	    
 	    JButton btnEliminarAlumno = new JButton();
+	    btnEliminarAlumno.setForeground(new Color(255, 255, 255));
 	    btnEliminarAlumno.setHorizontalAlignment(SwingConstants.RIGHT);
 	    btnEliminarAlumno.setText("Eliminar Alumno");
 	    btnEliminarAlumno.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
@@ -2104,7 +2280,7 @@ public class Ventana extends JFrame {
 	    JLabel Omar = new JLabel();
 	    Omar.setBounds(0, 4, 180, 175);
 	    panelFoto.add(Omar);
-		Omar.setIcon(new ImageIcon(getClass().getResource("Omar (1).png")));
+		Omar.setIcon(new ImageIcon(getClass().getResource("Sebastian(1).png")));
 	    
 	    JLabel lblNombre = new JLabel("Nombre:");
 	    lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -2112,7 +2288,7 @@ public class Ventana extends JFrame {
 	    eliminarAlumno.add(lblNombre);
 	   
 	    JLabel lblNombre_1 = new JLabel();
-	    lblNombre_1.setText("Juan Alberto");
+	    lblNombre_1.setText("Omar Mario");
 	    lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNombre_1.setBounds(446, 182, 124, 28);
 	    eliminarAlumno.add(lblNombre_1);
@@ -2160,7 +2336,7 @@ public class Ventana extends JFrame {
 	    panelInfoGeneral.add(lblGenero_1);
 	    
 	    JLabel lblLugarNacimiento = new JLabel();
-	    lblLugarNacimiento.setText("10/03/1998");
+	    lblLugarNacimiento.setText("22/10/2004");
 	    lblLugarNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblLugarNacimiento.setBounds(211, 60, 146, 28);
 	    panelInfoGeneral.add(lblLugarNacimiento);
@@ -2172,7 +2348,7 @@ public class Ventana extends JFrame {
 	    panelInfoGeneral.add(lblNacionalidad);
 	    
 	    JLabel lblTelefono = new JLabel();
-	    lblTelefono.setText("612 346 4585");
+	    lblTelefono.setText("612 149 1671");
 	    lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblTelefono.setBounds(214, 140, 143, 28);
 	    panelInfoGeneral.add(lblTelefono);
@@ -2228,25 +2404,25 @@ public class Ventana extends JFrame {
 	    PanelXD.add(lblCodigoControl);
 	    
 	    JLabel lblDomicilio = new JLabel();
-	    lblDomicilio.setText("Avenida America, 123");
+	    lblDomicilio.setText("Avenida Culebra, 230");
 	    lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblDomicilio.setBounds(179, 61, 190, 28);
 	    PanelXD.add(lblDomicilio);
 	    
 	    JLabel lblCalles_1 = new JLabel();
-	    lblCalles_1.setText("Tormenta y Venidon");
+	    lblCalles_1.setText("La Carreta");
 	    lblCalles_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCalles_1.setBounds(179, 100, 156, 28);
 	    PanelXD.add(lblCalles_1);
 	    
 	    JLabel lblCP_1 = new JLabel();
-	    lblCP_1.setText("12345");
+	    lblCP_1.setText("23089");
 	    lblCP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCP_1.setBounds(179, 140, 124, 28);
 	    PanelXD.add(lblCP_1);
 	    
 	    JLabel lblNivelEducativo = new JLabel();
-	    lblNivelEducativo.setText("Licenciatura");
+	    lblNivelEducativo.setText("Preparatoria");
 	    lblNivelEducativo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNivelEducativo.setBounds(172, 230, 124, 28);
 	    PanelXD.add(lblNivelEducativo);
@@ -2274,7 +2450,7 @@ public class Ventana extends JFrame {
 	    eliminarAlumno.add(lblApellidoM);
 	    
 	    JLabel lblApellidoM_1 = new JLabel();
-	    lblApellidoM_1.setText("Gonzalez");
+	    lblApellidoM_1.setText("Maromas");
 	    lblApellidoM_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblApellidoM_1.setBounds(446, 258, 124, 28);
 	    eliminarAlumno.add(lblApellidoM_1);
@@ -2285,7 +2461,7 @@ public class Ventana extends JFrame {
 	    eliminarAlumno.add(lblCorreo);
 	    
 	    JLabel lblCorreo_1 = new JLabel();
-	    lblCorreo_1.setText("juan10@gmail.com");
+	    lblCorreo_1.setText("julo24@gmail.com");
 	    lblCorreo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCorreo_1.setBounds(446, 296, 153, 28);
 	    eliminarAlumno.add(lblCorreo_1);
@@ -2316,7 +2492,7 @@ public class Ventana extends JFrame {
 	    eliminarAlumno.add(lblCurp);
 	    
 	    JLabel lblCurp_1 = new JLabel();
-	    lblCurp_1.setText("GOMJ850715HDFNZB02");
+	    lblCurp_1.setText("GUFO2019ALF1231");
 	    lblCurp_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCurp_1.setBounds(446, 334, 153, 28);
 	    eliminarAlumno.add(lblCurp_1);
@@ -2339,16 +2515,15 @@ public class Ventana extends JFrame {
 	
 	public void consultarDoce() {
 		
-	
-		
 		menuInicio();
 	    JPanel buscarDocente = new JPanel();
-	    buscarDocente.setBackground(new Color(255, 255, 255));
+	    buscarDocente.setBackground(new Color(47, 79, 79));
 	    getContentPane().add(buscarDocente);
 	    buscarDocente.setLayout(null);
  
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+	    panel_1.setBackground(new Color(46, 139, 87));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    buscarDocente.add(panel_1);
 	    panel_1.setLayout(null);
@@ -2357,39 +2532,21 @@ public class Ventana extends JFrame {
 	    docenteIcono.setBounds(10, 0, 128, 128);
 	    panel_1.add(docenteIcono);
 	    docenteIcono.setIcon(new ImageIcon(getClass().getResource("docenteIcono.png")));
-	
-	    JButton btnPanelDocente = new JButton();
-	    btnPanelDocente.setBorderPainted(false);
-	    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
-	    btnPanelDocente.setOpaque(false);
-	    btnPanelDocente.setText("Panel Docente");
-	    btnPanelDocente.setBackground(new Color(250, 128, 114));
-	    btnPanelDocente.setBounds(138, 35, 293, 58);
-	    panel_1.add(btnPanelDocente);
 	    
-	    
-	    
-	    btnPanelDocente.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				getContentPane().removeAll();
-				panelDocentes();
-                getContentPane().revalidate();
-                getContentPane().repaint();
-			}
-	    	
-	    });
+	    JLabel lblNewLabel_1 = new JLabel("Acceso a panel");
+	    lblNewLabel_1.setForeground(new Color(255, 255, 255));
+	    lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 40));
+	    lblNewLabel_1.setBounds(142, 44, 396, 38);
+	    panel_1.add(lblNewLabel_1);
 
 	    JPanel pnlDatosBasicos = new JPanel();
-	    pnlDatosBasicos.setBounds(0, 312, 1064, 28);
+	    pnlDatosBasicos.setBounds(10, 312, 1046, 28);
 	    buscarDocente.add(pnlDatosBasicos);
 	    pnlDatosBasicos.setLayout(null);
 	    
-	    JLabel lblDatosBasicos = new JLabel("Ingresa la matricula de el profesor");
+	    JLabel lblDatosBasicos = new JLabel("Ingresa la matricula de el docente");
 	    lblDatosBasicos.setFont(new Font("Tahoma", Font.PLAIN, 17));
-	    lblDatosBasicos.setBounds(381, 0, 255, 25);
+	    lblDatosBasicos.setBounds(381, 0, 279, 25);
 	    pnlDatosBasicos.add(lblDatosBasicos);
 
 	    textFieldMatricula = new JTextField();
@@ -2400,6 +2557,12 @@ public class Ventana extends JFrame {
 	    JButton btnNewButton = new JButton("Consultar");
         btnNewButton.setBounds(470, 381, 89, 23);
         buscarDocente.add(btnNewButton);
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+        panel.setBackground(new Color(255, 250, 250));
+        panel.setBounds(10, 137, 1046, 554);
+        buscarDocente.add(panel);
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(textFieldMatricula.getText().length() != 0) {
@@ -2450,7 +2613,7 @@ public class Ventana extends JFrame {
 	    descargarDoce.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    descargarDoce.add(panel_1);
 	    panel_1.setLayout(null);
@@ -2466,10 +2629,11 @@ public class Ventana extends JFrame {
 		panel_1.add(descargarInformacion);
 		
 		 JButton btnPanelDocente = new JButton();
+		 btnPanelDocente.setForeground(new Color(255, 255, 255));
 		    btnPanelDocente.setBorderPainted(false);
 		    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 		    btnPanelDocente.setText("Panel Docente");
-		    btnPanelDocente.setBackground(new Color(250, 128, 114));
+		    btnPanelDocente.setBackground(new Color(47, 79, 79));
 		    btnPanelDocente.setBounds(114, 35, 293, 58);
 		    panel_1.add(btnPanelDocente);
 		    
@@ -2479,7 +2643,7 @@ public class Ventana extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					getContentPane().removeAll();
-					panelDocentes();
+					panelDocentesConsultar();
 	                getContentPane().revalidate();
 	                getContentPane().repaint();
 				}
@@ -2487,11 +2651,12 @@ public class Ventana extends JFrame {
 		    });
 		    
 		    JButton btnDescargarDocente = new JButton();
+		    btnDescargarDocente.setForeground(new Color(255, 255, 255));
 		    btnDescargarDocente.setHorizontalAlignment(SwingConstants.RIGHT);
 		    btnDescargarDocente.setText("Descargar Información");
 		    btnDescargarDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 		    btnDescargarDocente.setBorderPainted(false);
-		    btnDescargarDocente.setBackground(new Color(250, 128, 114));
+		    btnDescargarDocente.setBackground(new Color(47, 79, 79));
 		    btnDescargarDocente.setBounds(459, 35, 449, 58);
 		    panel_1.add(btnDescargarDocente);
 		    
@@ -2717,6 +2882,7 @@ public class Ventana extends JFrame {
 	    infoEscolar.setBounds(481, 266, 30, 30);
 	    panel_2.add(infoEscolar);
 		infoEscolar.setIcon(new ImageIcon(getClass().getResource("escolaridad (1).png")));
+		
 	    
 	}
 	
@@ -2728,7 +2894,7 @@ public class Ventana extends JFrame {
 	    docenteCreado.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    docenteCreado.add(panel_1);
 	    panel_1.setLayout(null);
@@ -2744,10 +2910,11 @@ public class Ventana extends JFrame {
 		panel_1.add(finConsulta);
 		
 		 JButton btnPanelDocente = new JButton();
+		 btnPanelDocente.setForeground(new Color(255, 255, 255));
 		    btnPanelDocente.setBorderPainted(false);
 		    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 		    btnPanelDocente.setText("Panel Docente");
-		    btnPanelDocente.setBackground(new Color(250, 128, 114));
+		    btnPanelDocente.setBackground(new Color(47, 79, 79));
 		    btnPanelDocente.setBounds(114, 35, 293, 58);
 		    panel_1.add(btnPanelDocente);
 		    
@@ -2757,7 +2924,7 @@ public class Ventana extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					getContentPane().removeAll();
-					panelDocentes();
+					panelDocentesConsultar();
 	                getContentPane().revalidate();
 	                getContentPane().repaint();
 				}
@@ -2765,11 +2932,12 @@ public class Ventana extends JFrame {
 		    });
 		    
 		    JButton btnFinalizarDocente = new JButton();
+		    btnFinalizarDocente.setForeground(new Color(255, 255, 255));
 		    btnFinalizarDocente.setHorizontalAlignment(SwingConstants.RIGHT);
 		    btnFinalizarDocente.setText("Finalizar Consulta");
 		    btnFinalizarDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 		    btnFinalizarDocente.setBorderPainted(false);
-		    btnFinalizarDocente.setBackground(new Color(250, 128, 114));
+		    btnFinalizarDocente.setBackground(new Color(47, 79, 79));
 		    btnFinalizarDocente.setBounds(459, 35, 449, 58);
 		    panel_1.add(btnFinalizarDocente);
 		    
@@ -2821,7 +2989,7 @@ public class Ventana extends JFrame {
 	    lblNombre.setBounds(292, 182, 124, 28);
 	    docenteCreado.add(lblNombre);
 	    
-	    JLabel lblNombre_1 = new JLabel("");
+	    JLabel lblNombre_1 = new JLabel("Juan Alberto");
 	    lblNombre_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNombre_1.setBounds(446, 182, 124, 28);
 	    docenteCreado.add(lblNombre_1);
@@ -2831,12 +2999,13 @@ public class Ventana extends JFrame {
 	    lblApellidoP.setBounds(292, 220, 124, 28);
 	    docenteCreado.add(lblApellidoP);
 	    
-	    JLabel lblApellidoP_1 = new JLabel("");
+	    JLabel lblApellidoP_1 = new JLabel("Martinez");
 	    lblApellidoP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblApellidoP_1.setBounds(446, 220, 124, 28);
 	    docenteCreado.add(lblApellidoP_1);
 	    
 	    JPanel panelInfoGeneral = new JPanel();
+	    panelInfoGeneral.setBackground(new Color(211, 211, 211));
 	    panelInfoGeneral.setBounds(59, 433, 511, 179);
 	    docenteCreado.add(panelInfoGeneral);
 	    panelInfoGeneral.setLayout(null);
@@ -2866,22 +3035,23 @@ public class Ventana extends JFrame {
 	    lblGenero_1.setBounds(233, 20, 124, 28);
 	    panelInfoGeneral.add(lblGenero_1);
 	    
-	    JLabel lblFechaNacimiento = new JLabel("/ / /");
+	    JLabel lblFechaNacimiento = new JLabel("10/03/1998");
 	    lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblFechaNacimiento.setBounds(233, 60, 124, 28);
 	    panelInfoGeneral.add(lblFechaNacimiento);
 	    
-	    JLabel lblNacionalidad = new JLabel("");
+	    JLabel lblNacionalidad = new JLabel("Mexicano");
 	    lblNacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNacionalidad.setBounds(233, 100, 124, 28);
 	    panelInfoGeneral.add(lblNacionalidad);
 	    
-	    JLabel lblTelefono = new JLabel("");
+	    JLabel lblTelefono = new JLabel("612 346 4585");
 	    lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblTelefono.setBounds(233, 140, 124, 28);
 	    panelInfoGeneral.add(lblTelefono);
 	    
 	    JPanel PanelXD = new JPanel();
+	    PanelXD.setBackground(new Color(211, 211, 211));
 	    PanelXD.setBounds(625, 215, 379, 397);
 	    docenteCreado.add(PanelXD);
 	    PanelXD.setLayout(null);
@@ -2931,47 +3101,47 @@ public class Ventana extends JFrame {
 	    lblMatricula_1.setBounds(38, 309, 124, 28);
 	    PanelXD.add(lblMatricula_1);
 	    
-	    JLabel lblDomicilio = new JLabel("");
+	    JLabel lblDomicilio = new JLabel("Avenida america, 123");
 	    lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblDomicilio.setBounds(179, 61, 124, 28);
+	    lblDomicilio.setBounds(179, 61, 163, 28);
 	    PanelXD.add(lblDomicilio);
 	    
-	    JLabel lblCalles_1 = new JLabel("");
+	    JLabel lblCalles_1 = new JLabel("Tormenta y Aguacero");
 	    lblCalles_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblCalles_1.setBounds(179, 100, 124, 28);
+	    lblCalles_1.setBounds(179, 100, 163, 28);
 	    PanelXD.add(lblCalles_1);
 	    
-	    JLabel lblCP_1 = new JLabel("");
+	    JLabel lblCP_1 = new JLabel("12345");
 	    lblCP_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCP_1.setBounds(179, 140, 124, 28);
 	    PanelXD.add(lblCP_1);
 	    
-	    JLabel lblNivelEducativo = new JLabel("");
+	    JLabel lblNivelEducativo = new JLabel("Licenciatura");
 	    lblNivelEducativo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblNivelEducativo.setBounds(172, 230, 124, 28);
 	    PanelXD.add(lblNivelEducativo);
 	    
-	    JLabel lblStatusActual = new JLabel("");
+	    JLabel lblStatusActual = new JLabel("Activo");
 	    lblStatusActual.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblStatusActual.setBounds(172, 270, 124, 28);
 	    PanelXD.add(lblStatusActual);
 	    
-	    JLabel lblMatricula =new JLabel("");
+	    JLabel lblMatricula =new JLabel(textFieldMatricula.getText());
 	    lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblMatricula.setBounds(172, 309, 124, 28);
 	    PanelXD.add(lblMatricula);
 	    
-	    		JLabel infoEscolar = new JLabel();
-	    		infoEscolar.setBounds(210, 190, 30, 30);
-	    		PanelXD.add(infoEscolar);
-	    		infoEscolar.setIcon(new ImageIcon(getClass().getResource("escolaridad (1).png")));
+	    JLabel infoEscolar = new JLabel();
+	    infoEscolar.setBounds(210, 190, 30, 30);
+	    PanelXD.add(infoEscolar);
+	    infoEscolar.setIcon(new ImageIcon(getClass().getResource("escolaridad (1).png")));
 	    
 	    JLabel lblApellidoM = new JLabel("Apellido materno:");
 	    lblApellidoM.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblApellidoM.setBounds(292, 258, 124, 28);
 	    docenteCreado.add(lblApellidoM);
 	    
-	    JLabel lblApellidoM_1 = new JLabel("");
+	    JLabel lblApellidoM_1 = new JLabel("Gonzalez");
 	    lblApellidoM_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblApellidoM_1.setBounds(446, 258, 124, 28);
 	    docenteCreado.add(lblApellidoM_1);
@@ -2981,9 +3151,9 @@ public class Ventana extends JFrame {
 	    lblCorreo.setBounds(292, 296, 144, 28);
 	    docenteCreado.add(lblCorreo);
 	    
-	    JLabel lblCorreo_1 = new JLabel("");
+	    JLabel lblCorreo_1 = new JLabel("juan10@gmail.com");
 	    lblCorreo_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblCorreo_1.setBounds(446, 296, 124, 28);
+	    lblCorreo_1.setBounds(446, 296, 148, 28);
 	    docenteCreado.add(lblCorreo_1);
 	    
 	    JLabel lblInfoGeneral = new JLabel("Información General");
@@ -3001,10 +3171,16 @@ public class Ventana extends JFrame {
 	    lblCurp.setBounds(292, 334, 144, 28);
 	    docenteCreado.add(lblCurp);
 	    
-	    JLabel lblCurp_1 = new JLabel("");
+	    JLabel lblCurp_1 = new JLabel("GOMJ850715HDFNZ");
 	    lblCurp_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	    lblCurp_1.setBounds(446, 334, 124, 28);
+	    lblCurp_1.setBounds(446, 334, 148, 28);
 	    docenteCreado.add(lblCurp_1);
+	    
+	    JPanel panel = new JPanel();
+	    panel.setBorder(null);
+	    panel.setBackground(new Color(255, 255, 255));
+	    panel.setBounds(10, 137, 1046, 527);
+	    docenteCreado.add(panel);
 	}
 
 	public void crearDoce() {
@@ -3016,7 +3192,7 @@ public class Ventana extends JFrame {
 	    crearDoce.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    crearDoce.add(panel_1);
 	    panel_1.setLayout(null);
@@ -3032,11 +3208,12 @@ public class Ventana extends JFrame {
 		panel_1.add(registro);
 		
 		JButton btnPanelDocente = new JButton();
+		btnPanelDocente.setForeground(new Color(255, 255, 255));
 	    btnPanelDocente.setBorderPainted(false);
 	    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
-	    btnPanelDocente.setText("Panel Docente");
-	    btnPanelDocente.setBackground(new Color(250, 128, 114));
-	    btnPanelDocente.setBounds(138, 35, 293, 58);
+	    btnPanelDocente.setText("Selección de docente");
+	    btnPanelDocente.setBackground(new Color(47, 79, 79));
+	    btnPanelDocente.setBounds(138, 35, 417, 58);
 	    panel_1.add(btnPanelDocente);
 	    
 	    btnPanelDocente.addActionListener(new ActionListener() {
@@ -3053,11 +3230,12 @@ public class Ventana extends JFrame {
 	    });
 	    
 	    JButton btnCrearDocente = new JButton();
+	    btnCrearDocente.setForeground(new Color(255, 255, 255));
 	    btnCrearDocente.setHorizontalAlignment(SwingConstants.RIGHT);
 	    btnCrearDocente.setText("Crear Docente");
 	    btnCrearDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 	    btnCrearDocente.setBorderPainted(false);
-	    btnCrearDocente.setBackground(new Color(250, 128, 114));
+	    btnCrearDocente.setBackground(new Color(47, 79, 79));
 	    btnCrearDocente.setBounds(543, 35, 365, 58);
 	    panel_1.add(btnCrearDocente);
 	    
@@ -3291,6 +3469,19 @@ public class Ventana extends JFrame {
 	    textFieldTelefono = new JTextField();
 	    textFieldTelefono.setColumns(10);
 	    textFieldTelefono.setBounds(397, 418, 245, 19);
+	    
+	    textFieldTelefono.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e)
+			{
+				char character = e.getKeyChar();
+				if(!Character.isDigit(character)|| textFieldTelefono.getText().length()>=10)
+				{
+					e.consume();
+				}
+			}
+		});
+	    
 	    crearDoce.add(textFieldTelefono);
 	    
 	    JPanel pnlEscolaridad = new JPanel();
@@ -3311,6 +3502,17 @@ public class Ventana extends JFrame {
 	    textFieldCP = new JTextField();
 	    textFieldCP.setColumns(10);
 	    textFieldCP.setBounds(243, 563, 399, 19);
+	    textFieldCP.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e)
+			{
+				char character = e.getKeyChar();
+				if(!Character.isDigit(character)|| textFieldCP.getText().length() >= 5)
+				{
+					e.consume();
+				}
+			}
+		});
 	    crearDoce.add(textFieldCP);
 	    
 	    JLabel lblNivelEducativo = new JLabel("Nivel Educativo");
@@ -3361,7 +3563,7 @@ public class Ventana extends JFrame {
 	    docenteCreado.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    docenteCreado.add(panel_1);
 	    panel_1.setLayout(null);
@@ -3372,11 +3574,12 @@ public class Ventana extends JFrame {
 	    docenteIcono.setIcon(new ImageIcon(getClass().getResource("docenteIcono.png")));
 	   
 		JButton btnPanelDocente = new JButton();
+		btnPanelDocente.setForeground(new Color(255, 255, 255));
 	    btnPanelDocente.setBorderPainted(false);
 	    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
-	    btnPanelDocente.setText("Panel Docente");
-	    btnPanelDocente.setBackground(new Color(250, 128, 114));
-	    btnPanelDocente.setBounds(138, 35, 293, 58);
+	    btnPanelDocente.setText("Selección de docente");
+	    btnPanelDocente.setBackground(new Color(47, 79, 79));
+	    btnPanelDocente.setBounds(138, 35, 518, 58);
 	    panel_1.add(btnPanelDocente);
 	    
 	    btnPanelDocente.addActionListener(new ActionListener() {
@@ -3621,16 +3824,17 @@ public class Ventana extends JFrame {
 	    editarDoce.setLayout(null);
 	   
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    editarDoce.add(panel_1);
 	    panel_1.setLayout(null);
 	    
 	    JButton btnPanelDocente = new JButton();
+	    btnPanelDocente.setForeground(new Color(255, 255, 255));
 	    btnPanelDocente.setBorderPainted(false);
 	    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 	    btnPanelDocente.setText("Panel Docente");
-	    btnPanelDocente.setBackground(new Color(250, 128, 114));
+	    btnPanelDocente.setBackground(new Color(47, 79, 79));
 	    btnPanelDocente.setBounds(138, 35, 293, 58);
 	    panel_1.add(btnPanelDocente);
 	    
@@ -3648,11 +3852,12 @@ public class Ventana extends JFrame {
 	    });
 	    
 	    JButton btnEditarDocente = new JButton();
+	    btnEditarDocente.setForeground(new Color(255, 255, 255));
 	    btnEditarDocente.setHorizontalAlignment(SwingConstants.RIGHT);
 	    btnEditarDocente.setText("Editar Docente");
 	    btnEditarDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 	    btnEditarDocente.setBorderPainted(false);
-	    btnEditarDocente.setBackground(new Color(250, 128, 114));
+	    btnEditarDocente.setBackground(new Color(47, 79, 79));
 	    btnEditarDocente.setBounds(543, 35, 365, 58);
 	    panel_1.add(btnEditarDocente);
 	    
@@ -3790,20 +3995,45 @@ public class Ventana extends JFrame {
 	    lblCP.setBounds(521, 163, 94, 19);
 	    panel.add(lblCP);
 	    
-	    JTextField textFieldCp = new JTextField();
-	    textFieldCp.setColumns(10);
-	    textFieldCp.setBounds(628, 163, 282, 19);
-	    panel.add(textFieldCp);
+	    textFieldCP = new JTextField();
+	    textFieldCP.setColumns(10);
+	    textFieldCP.setBounds(628, 163, 282, 19);
+	    textFieldCP.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e) 
+			{
+				char character = e.getKeyChar();
+				if(!Character.isDigit(character)|| textFieldCP.getText().length()>=5)
+				{
+					e.consume();
+				}
+			}
+		});
+	    panel.add(textFieldCP);
 	    
 	    JLabel lblTelefono = new JLabel("Teléfono:");
 	    lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblTelefono.setBounds(549, 204, 68, 19);
 	    panel.add(lblTelefono);
 	    
-	    JTextField textFieldTel = new JTextField();
+	    textFieldTel = new JTextField();
 	    textFieldTel.setColumns(10);
 	    textFieldTel.setBounds(628, 204, 282, 19);
+	    
+	    textFieldTel.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e) 
+			{
+				char character = e.getKeyChar();
+				if(!Character.isDigit(character)|| textFieldTel.getText().length()>=10)
+				{
+					e.consume();
+				}
+			}
+		});
+	    
 	    panel.add(textFieldTel);
+	    
 	    
 	    JLabel lblNivelEducativo_2 = new JLabel("Nivel educativo:");
 	    lblNivelEducativo_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -3849,16 +4079,17 @@ public class Ventana extends JFrame {
 	    eliminarDocente.setLayout(null);
 	    
 	    JPanel panel_1 = new JPanel();
-	    panel_1.setBackground(new Color(250, 128, 114));
+	    panel_1.setBackground(new Color(47, 79, 79));
 	    panel_1.setBounds(10, 10, 1046, 117);
 	    eliminarDocente.add(panel_1);
 	    panel_1.setLayout(null);
 	    
 	    JButton btnPanelDocente = new JButton();
+	    btnPanelDocente.setForeground(new Color(255, 255, 255));
 	    btnPanelDocente.setBorderPainted(false);
 	    btnPanelDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 	    btnPanelDocente.setText("Panel Docente");
-	    btnPanelDocente.setBackground(new Color(250, 128, 114));
+	    btnPanelDocente.setBackground(new Color(47, 79, 79));
 	    btnPanelDocente.setBounds(138, 35, 293, 58);
 	    panel_1.add(btnPanelDocente);
 	    
@@ -3868,7 +4099,7 @@ public class Ventana extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				getContentPane().removeAll();
-				panelDocentes();
+				panelDocentesConsultar();
                 getContentPane().revalidate();
                 getContentPane().repaint();
 			}
@@ -3876,11 +4107,12 @@ public class Ventana extends JFrame {
 	    });
 	    
 	    JButton btnEliminarDocente = new JButton();
+	    btnEliminarDocente.setForeground(new Color(255, 255, 255));
 	    btnEliminarDocente.setHorizontalAlignment(SwingConstants.RIGHT);
 	    btnEliminarDocente.setText("Eliminar Docente");
 	    btnEliminarDocente.setFont(new Font("Mongolian Baiti", Font.BOLD | Font.ITALIC, 40));
 	    btnEliminarDocente.setBorderPainted(false);
-	    btnEliminarDocente.setBackground(new Color(250, 128, 114));
+	    btnEliminarDocente.setBackground(new Color(47, 79, 79));
 	    btnEliminarDocente.setBounds(543, 35, 365, 58);
 	    panel_1.add(btnEliminarDocente);
 	    
@@ -4048,7 +4280,7 @@ public class Ventana extends JFrame {
 	    PanelXD.add(lblDomicilio);
 	    
 	    JLabel lblCalles_1 = new JLabel();
-	    lblCalles_1.setText("Tormenta y Venidon");
+	    lblCalles_1.setText("Tormenta y Aguacero");
 	    lblCalles_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCalles_1.setBounds(179, 100, 156, 28);
 	    PanelXD.add(lblCalles_1);
@@ -4072,7 +4304,6 @@ public class Ventana extends JFrame {
 	    PanelXD.add(lblStatusActual);
 	    
 	    JLabel lblMatricula = new JLabel(textFieldMatricula.getText());
-	    lblMatricula.setText("21324565");
 	    lblMatricula.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblMatricula.setBounds(172, 309, 124, 28);
 	    PanelXD.add(lblMatricula);
@@ -4135,20 +4366,22 @@ public class Ventana extends JFrame {
 	    lblCurp_1.setBounds(446, 334, 153, 28);
 	    eliminarDocente.add(lblCurp_1);
 	    
-	    JLabel lblDatosPersonales = new JLabel("Datos Personales");
-	    lblDatosPersonales.setFont(new Font("Tahoma", Font.BOLD, 18));
-	    lblDatosPersonales.setBounds(332, 144, 262, 28);
-	    eliminarDocente.add(lblDatosPersonales);
-	    
 	    JLabel datosIcono = new JLabel();
 	    datosIcono.setBounds(292, 144, 30, 30);
 	    eliminarDocente.add(datosIcono);
 	    datosIcono.setIcon(new ImageIcon(getClass().getResource("personalData.png")));
 	    
 	    JPanel panel = new JPanel();
-	    panel.setBackground(new Color(255, 204, 102));
+	    panel.setBorder(null);
+	    panel.setBackground(new Color(255, 255, 255));
 	    panel.setBounds(10, 137, 1046, 554);
 	    eliminarDocente.add(panel);
+	    panel.setLayout(null);
+		
+		JLabel lblDatosPersonales = new JLabel("Datos Personales");
+		lblDatosPersonales.setBounds(317, 10, 262, 28);
+		panel.add(lblDatosPersonales);
+		lblDatosPersonales.setFont(new Font("Tahoma", Font.BOLD, 18));
 	}
 	
 	public void menuInicio() {
@@ -4183,12 +4416,7 @@ public class Ventana extends JFrame {
                 getContentPane().repaint();
             }
         });
-		
-		
-		
-		
-
-        
+	 
 }
 	
 	public void menuAlumnos() {
@@ -4210,9 +4438,21 @@ public class Ventana extends JFrame {
             }
         });
 		
-		JMenuItem volverPanel = new JMenuItem("Volver al panel de alumnos");
+		JMenuItem volverPanel = new JMenuItem("Ir al panel de alumnos");
 		mnNewMenu.add(volverPanel);
 		volverPanel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+                getContentPane().removeAll();
+                panelAlumnosConsultar();
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        });
+		
+		JMenuItem volverSeleccionAlu = new JMenuItem("Ir a selección de alumnos");
+		mnNewMenu.add(volverSeleccionAlu);
+		volverSeleccionAlu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
                 getContentPane().removeAll();
@@ -4307,13 +4547,25 @@ public class Ventana extends JFrame {
             }
         });
 		
-		JMenuItem volverPanel = new JMenuItem("Volver al panel de alumnos");
+		JMenuItem volverSeleccionDocente = new JMenuItem("Ir a selección de docentes");
+		mnNewMenu.add(volverSeleccionDocente);
+		volverSeleccionDocente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+                getContentPane().removeAll();
+                panelDocentes();
+                getContentPane().revalidate();
+                getContentPane().repaint();
+            }
+        });
+		
+		JMenuItem volverPanel = new JMenuItem("Ir a panel de docentes");
 		mnNewMenu.add(volverPanel);
 		volverPanel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
                 getContentPane().removeAll();
-                panelDocentes();
+                panelDocentesConsultar();
                 getContentPane().revalidate();
                 getContentPane().repaint();
             }
