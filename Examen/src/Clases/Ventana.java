@@ -2170,7 +2170,7 @@ public class Ventana extends JFrame {
 	    lblNivelEducativo_2.setBounds(509, 244, 109, 19);
 	    panel.add(lblNivelEducativo_2);
 	    
-	    String escolaridad[] = {"Licenciatura","Ingenieria","Maestria","Doctorado"};
+	    String escolaridad[] = {"Primaria","Secundaria","Preparatoria"};
 	    
 	    JComboBox comboBoxNvlEdu = new JComboBox(escolaridad);
 	    comboBoxNvlEdu.setBounds(628, 244, 282, 21);
@@ -2398,7 +2398,7 @@ public class Ventana extends JFrame {
 	    lblStatus.setBounds(38, 270, 124, 28);
 	    PanelXD.add(lblStatus);
 	    
-	    JLabel lblCodigoControl = new JLabel("Matricula");
+	    JLabel lblCodigoControl = new JLabel("Codigo de control:");
 	    lblCodigoControl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	    lblCodigoControl.setBounds(38, 309, 124, 28);
 	    PanelXD.add(lblCodigoControl);
